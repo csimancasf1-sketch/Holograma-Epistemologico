@@ -1,234 +1,866 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Holograma epistemológico interactivo</title>
-<style>
-  :root{
-    --bg:#050b16; --panel:#0b1424; --card:#101c30; --text:#eef6ff; --muted:#9fb0c5;
-    --cyan:#3ad9ff; --violet:#b971ff; --green:#78e66d; --gold:#ffbf47; --border:#2b3a52;
-  }
-  *{box-sizing:border-box}
-  body{
-    margin:0; font-family:Inter,Segoe UI,Arial,sans-serif; color:var(--text);
-    background:
-      radial-gradient(circle at 50% 40%, rgba(58,217,255,.12), transparent 28%),
-      radial-gradient(circle at 50% 70%, rgba(185,113,255,.10), transparent 32%),
-      linear-gradient(145deg,#02060d,#07111f 55%,#030812);
-    min-height:100vh;
-  }
-  .wrap{max-width:1500px;margin:auto;padding:26px}
-  header{display:flex;justify-content:space-between;gap:16px;align-items:flex-end;margin-bottom:18px}
-  header h1{margin:4px 0 0;font-size:clamp(24px,3vw,42px)}
-  header p{margin:0;color:var(--muted)}
-  .chip{border:1px solid var(--cyan);color:var(--cyan);padding:8px 12px;border-radius:999px;font-size:14px}
-  .board{
-    position:relative; border:1px solid var(--border); border-radius:28px; padding:18px;
-    background-color:rgba(5,11,22,.78);
-    background-image:radial-gradient(rgba(86,114,150,.26) 1px, transparent 1px);
-    background-size:22px 22px;
-    box-shadow:0 25px 70px rgba(0,0,0,.35);
-  }
-  .grid{display:grid;grid-template-columns:1fr .78fr 1fr;gap:16px;align-items:center}
-  .axis{border:1px solid var(--c);border-radius:20px;padding:14px;background:rgba(6,13,25,.82)}
-  .axis-title{display:flex;gap:10px;align-items:center;margin-bottom:12px;color:var(--c);font-weight:700}
-  .num{display:grid;place-items:center;width:34px;height:34px;border:1px solid currentColor;border-radius:10px;flex:0 0 auto}
-  .node{
-    width:100%;display:block;text-align:left;padding:13px;margin:9px 0;border-radius:14px;
-    border:1px solid var(--c);color:var(--text);background:rgba(12,25,43,.86);cursor:pointer;
-    transition:.18s ease;
-  }
-  .node:hover,.node:focus{transform:translateY(-2px);box-shadow:0 0 24px color-mix(in srgb,var(--c) 34%, transparent);outline:none}
-  .who{display:flex;align-items:center;gap:10px}
-  .avatar{display:grid;place-items:center;width:42px;height:42px;border:1px solid var(--c);border-radius:50%;color:var(--c);font-weight:800}
-  .node b{display:block}.node small{color:var(--muted)}
-  .center{display:flex;flex-direction:column;align-items:center;gap:14px}
-  .core{
-    width:min(100%,310px);aspect-ratio:1;border-radius:50%;cursor:pointer;color:var(--text);
-    border:2px solid var(--cyan);position:relative;padding:46px 28px;text-align:center;
-    background:radial-gradient(circle,rgba(58,217,255,.13),rgba(185,113,255,.05) 55%,rgba(7,17,31,.95) 70%);
-    box-shadow:0 0 48px rgba(58,217,255,.15);
-  }
-  .core:before,.core:after{content:"";position:absolute;border-radius:50%;inset:16px;border:1px solid rgba(58,217,255,.45)}
-  .core:after{inset:31px;border-style:dashed;border-color:rgba(185,113,255,.65)}
-  .core>*{position:relative;z-index:2}
-  .core em{display:block;color:var(--cyan);font-style:normal;font-size:13px;letter-spacing:.08em}
-  .core strong{display:block;font-size:clamp(18px,2.2vw,27px);margin-top:10px}
-  .core span{display:block;color:var(--muted);margin-top:7px}
-  .special{
-    width:100%;max-width:330px;border:1px dashed var(--gold);border-radius:14px;padding:12px;
-    background:rgba(255,191,71,.06);color:var(--text);cursor:pointer;text-align:center;
-  }
-  .processes{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:10px}
-  .proc{font-size:12px;text-align:center;padding:8px 4px;border:1px solid var(--border);border-radius:9px;color:var(--muted)}
-  .legend{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}
-  .leg{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
-  .line{width:38px;border-top:2px solid var(--x)}
-  .dash{border-top-style:dashed}.dot{border-top-style:dotted}
-  .modal{display:none;position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.68);padding:20px;align-items:center;justify-content:center}
-  .modal.show{display:flex}
-  .dialog{width:min(760px,100%);max-height:88vh;overflow:auto;border:1px solid var(--border);border-radius:22px;background:#07111f;padding:22px;box-shadow:0 30px 90px rgba(0,0,0,.55)}
-  .dialog-top{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}
-  .kicker{font-size:13px;color:var(--cyan);text-transform:uppercase;letter-spacing:.08em}
-  .dialog h2{margin:5px 0;font-size:28px}.subtitle{color:var(--muted);margin-bottom:16px}
-  .dialog p{line-height:1.62}.dialog strong{color:var(--cyan)}
-  .close{border:1px solid var(--border);background:#101c30;color:white;border-radius:10px;padding:8px 11px;cursor:pointer}
-  footer{text-align:center;color:var(--muted);font-size:13px;margin-top:16px}
-  @media(max-width:900px){
-    .grid{grid-template-columns:1fr}.center{order:-1}.legend{grid-template-columns:1fr 1fr}
-    header{align-items:flex-start;flex-direction:column}.processes{grid-template-columns:1fr 1fr}
-  }
-  @media(max-width:520px){.wrap{padding:12px}.board{padding:10px}.legend{grid-template-columns:1fr}}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Holograma epistemológico interactivo</title>
+  <style>
+    :root{
+      --bg:#0b1620;
+      --panel:#101b27;
+      --line:#2b3946;
+      --text:#edf2f6;
+      --muted:#9ca9b5;
+      --paper:#f6f1ea;
+      --ink:#1e2a33;
+      --c1:#7ab7c5;
+      --c2:#aa99d3;
+      --c3:#89b597;
+      --c4:#c8a86f;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0b1620;
+      color:var(--text);
+    }
+
+    .page{
+      max-width:1400px;
+      margin:auto;
+      padding:24px;
+    }
+
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:16px;
+      margin-bottom:18px;
+      flex-wrap:wrap;
+    }
+
+    .eyebrow{
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      color:var(--muted);
+    }
+
+    h1{
+      margin:4px 0 6px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size:clamp(28px, 3vw, 42px);
+      font-weight:500;
+      line-height:1.1;
+    }
+
+    .lead{
+      margin:0;
+      max-width:860px;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.5;
+    }
+
+    .hint{
+      color:var(--muted);
+      font-size:12px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:8px 12px;
+    }
+
+    .board{
+      position:relative;
+      min-height:780px;
+      border:1px solid var(--line);
+      border-radius:24px;
+      overflow:hidden;
+      background:linear-gradient(180deg, #101b27, #0b1620);
+    }
+
+    .board::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background-image: radial-gradient(rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size:26px 26px;
+      opacity:.14;
+      pointer-events:none;
+    }
+
+    svg.links{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      pointer-events:none;
+      z-index:1;
+    }
+
+    svg.links line{
+      stroke:#50606f;
+      stroke-width:1;
+      opacity:.45;
+    }
+
+    svg.links path{
+      fill:none;
+      stroke-width:1.2;
+      opacity:.38;
+    }
+
+    .axis{
+      position:absolute;
+      z-index:2;
+      width:240px;
+      padding-bottom:7px;
+      border-bottom:1px solid var(--axis);
+      color:var(--axis);
+    }
+
+    .axis .n{
+      display:inline-flex;
+      width:23px;
+      height:23px;
+      border-radius:50%;
+      border:1px solid currentColor;
+      align-items:center;
+      justify-content:center;
+      font-size:10px;
+      margin-right:6px;
+    }
+
+    .axis strong{
+      font-size:12px;
+    }
+
+    .axis small{
+      display:block;
+      margin:5px 0 0 29px;
+      color:var(--muted);
+      font-size:10.5px;
+      line-height:1.4;
+    }
+
+    .a1{--axis:var(--c1); left:6%; top:8%;}
+    .a2{--axis:var(--c2); right:6%; top:8%;}
+    .a3{--axis:var(--c3); left:6%; bottom:13%;}
+    .a4{--axis:var(--c4); right:6%; bottom:13%;}
+
+    .core{
+      position:absolute;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
+      width:245px;
+      height:245px;
+      border-radius:50%;
+      border:1px solid var(--c1);
+      background:radial-gradient(circle at center, rgba(122,183,197,.12), rgba(11,22,32,.97) 72%);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:30px;
+      z-index:4;
+      cursor:pointer;
+      color:var(--text);
+    }
+
+    .core::before{
+      content:"";
+      position:absolute;
+      inset:16px;
+      border:1px solid rgba(122,183,197,.22);
+      border-radius:50%;
+    }
+
+    .core::after{
+      content:"";
+      position:absolute;
+      inset:34px;
+      border:1px dashed rgba(170,153,211,.24);
+      border-radius:50%;
+    }
+
+    .core .inner{
+      position:relative;
+      z-index:2;
+    }
+
+    .tiny{
+      font-size:10px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--c1);
+    }
+
+    .core h2{
+      margin:10px 0 7px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size:24px;
+      font-weight:500;
+      line-height:1.1;
+    }
+
+    .core p{
+      margin:0;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.45;
+    }
+
+    .person{
+      position:absolute;
+      z-index:4;
+      width:195px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      background:transparent;
+      border:0;
+      color:var(--text);
+      text-align:left;
+      padding:0;
+      cursor:pointer;
+    }
+
+    .photo{
+      width:64px;
+      height:64px;
+      flex:0 0 auto;
+      border-radius:50%;
+      overflow:hidden;
+      border:2px solid var(--accent);
+      background:#15222d;
+    }
+
+    .photo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      filter:grayscale(100%) contrast(1.02);
+    }
+
+    .person strong{
+      display:block;
+      font-size:13px;
+      margin-bottom:2px;
+    }
+
+    .person span{
+      display:block;
+      color:var(--muted);
+      font-size:10.5px;
+      line-height:1.35;
+    }
+
+    .p1{--accent:var(--c1); left:10%; top:21%;}
+    .p2{--accent:var(--c1); left:18%; top:35%;}
+    .p3{--accent:var(--c1); left:9%; top:49%;}
+
+    .p4{--accent:var(--c2); right:10%; top:23%;}
+    .p5{--accent:var(--c2); right:15%; top:40%;}
+
+    .p6{--accent:var(--c3); left:11%; bottom:29%;}
+    .p7{--accent:var(--c3); left:20%; bottom:16%;}
+
+    .p8{--accent:var(--c4); right:11%; bottom:26%;}
+
+    .note{
+      position:absolute;
+      left:50%;
+      transform:translateX(-50%);
+      z-index:4;
+      width:220px;
+      border-radius:13px;
+      padding:10px 11px;
+      text-align:left;
+      cursor:pointer;
+    }
+
+    .tension{
+      top:72%;
+      border:1px dashed var(--c4);
+      background:rgba(200,168,111,.05);
+    }
+
+    .synth{
+      top:84%;
+      border:1px dashed var(--line);
+      background:rgba(255,255,255,.02);
+    }
+
+    .note b{
+      display:block;
+      font-size:10px;
+      text-transform:uppercase;
+      letter-spacing:.10em;
+      color:var(--c4);
+    }
+
+    .synth b{
+      color:#d4dde5;
+    }
+
+    .note span{
+      display:block;
+      margin-top:4px;
+      color:var(--muted);
+      font-size:11px;
+      line-height:1.4;
+    }
+
+    .route{
+      position:absolute;
+      left:50%;
+      bottom:2.5%;
+      transform:translateX(-50%);
+      display:flex;
+      gap:6px;
+      align-items:center;
+      color:var(--muted);
+      font-size:10px;
+      z-index:3;
+    }
+
+    .route i{
+      font-style:normal;
+      width:20px;
+      height:20px;
+      border:1px solid var(--line);
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      color:#dce4eb;
+    }
+
+    .route em{
+      font-style:normal;
+      color:#4f6070;
+    }
+
+    .modal{
+      display:none;
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.68);
+      z-index:100;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+    }
+
+    .modal.show{
+      display:flex;
+    }
+
+    .dialog{
+      width:min(820px,100%);
+      max-height:88vh;
+      overflow:auto;
+      background:var(--paper);
+      color:var(--ink);
+      border-radius:18px;
+      padding:22px 24px;
+      box-shadow:0 26px 90px rgba(0,0,0,.45);
+    }
+
+    .dialoghead{
+      display:grid;
+      grid-template-columns:92px 1fr auto;
+      gap:16px;
+      align-items:start;
+    }
+
+    .bigphoto{
+      width:92px;
+      height:92px;
+      border-radius:50%;
+      overflow:hidden;
+      border:3px solid #d9d2c7;
+      background:#e8e3da;
+    }
+
+    .bigphoto img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter:grayscale(100%);
+    }
+
+    .tag{
+      font-size:10px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:#6f7d87;
+    }
+
+    .dialog h3{
+      margin:4px 0 2px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size:28px;
+      font-weight:500;
+    }
+
+    .sub{
+      color:#6b7985;
+      font-size:13px;
+    }
+
+    .close{
+      border:1px solid #d1c9bd;
+      background:transparent;
+      color:var(--ink);
+      border-radius:9px;
+      padding:7px 10px;
+      cursor:pointer;
+    }
+
+    .section{
+      border-top:1px solid #ded7cc;
+      margin-top:15px;
+      padding-top:13px;
+    }
+
+    .label{
+      font-size:10px;
+      text-transform:uppercase;
+      letter-spacing:.09em;
+      color:#5e6c78;
+      font-weight:700;
+      margin-bottom:6px;
+    }
+
+    .dialog p{
+      margin:0;
+      font-size:14.5px;
+      line-height:1.62;
+    }
+
+    .credit{
+      margin-top:14px;
+      font-size:11px;
+      color:#73808a;
+      background:#eee9e0;
+      padding:9px 11px;
+      border-radius:9px;
+    }
+
+    footer{
+      margin-top:10px;
+      color:var(--muted);
+      font-size:10.5px;
+      text-align:center;
+      line-height:1.5;
+    }
+
+    @media (max-width:1050px){
+      .board{
+        min-height:auto;
+        padding:18px;
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:12px;
+      }
+
+      svg.links,
+      .board::before{
+        display:none;
+      }
+
+      .core,
+      .axis,
+      .person,
+      .note,
+      .route{
+        position:static;
+        transform:none;
+        width:auto;
+      }
+
+      .core{
+        grid-column:1 / -1;
+        justify-self:center;
+        width:240px;
+        height:240px;
+      }
+
+      .axis{padding:10px 0}
+      .note{grid-column:1 / -1}
+      .route{
+        grid-column:1 / -1;
+        justify-content:center;
+      }
+    }
+
+    @media (max-width:650px){
+      .board{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <div>
-      <p>Cartografía epistemológica interactiva</p>
-      <h1>La alquimia del saber: transformar la memoria en motor</h1>
-    </div>
-    <div class="chip">Haz clic en cada nodo</div>
-  </header>
+  <div class="page">
+    <header>
+      <div>
+        <div class="eyebrow">Holograma epistemológico interactivo</div>
+        <h1>La alquimia del saber: transformar la memoria en motor</h1>
+        <p class="lead">
+          Una lectura sencilla de la didáctica de procesos en educación matemática: el centro resume la idea, los ejes la desarrollan y cada autor aporta una mirada distinta.
+        </p>
+      </div>
+      <div class="hint">Haz clic en los retratos</div>
+    </header>
 
-  <main class="board">
-    <div class="grid">
-      <section>
-        <div class="axis" style="--c:var(--cyan)">
-          <div class="axis-title"><span class="num">1</span><span>Fundamentos epistemológicos y constructivismo pedagógico</span></div>
-          <button class="node" data-key="piaget"><span class="who"><span class="avatar">JP</span><span><b>Jean Piaget</b><small>Constructivismo genético</small></span></span></button>
-          <button class="node" data-key="vygotsky"><span class="who"><span class="avatar">LV</span><span><b>Lev Vygotsky</b><small>Socioconstructivismo · ZDP</small></span></span></button>
-          <button class="node" data-key="ausubel"><span class="who"><span class="avatar">DA</span><span><b>David Ausubel</b><small>Aprendizaje significativo</small></span></span></button>
+    <section class="board">
+      <svg class="links" viewBox="0 0 1200 760" preserveAspectRatio="none">
+        <line x1="600" y1="380" x2="250" y2="205"/>
+        <line x1="600" y1="380" x2="260" y2="330"/>
+        <line x1="600" y1="380" x2="210" y2="455"/>
+        <line x1="600" y1="380" x2="955" y2="220"/>
+        <line x1="600" y1="380" x2="940" y2="350"/>
+        <line x1="600" y1="380" x2="235" y2="575"/>
+        <line x1="600" y1="380" x2="300" y2="665"/>
+        <line x1="600" y1="380" x2="970" y2="575"/>
+
+        <path d="M280 205 C395 170,470 180,540 248" stroke="var(--c1)"/>
+        <path d="M920 220 C805 175,735 188,662 248" stroke="var(--c2)"/>
+        <path d="M270 605 C390 650,460 610,535 536" stroke="var(--c3)"/>
+        <path d="M930 590 C820 650,745 610,665 536" stroke="var(--c4)"/>
+      </svg>
+
+      <div class="axis a1">
+        <span class="n">1</span><strong>Fundamentos epistemológicos</strong>
+        <small>Construcción, mediación y saberes previos.</small>
+      </div>
+
+      <div class="axis a2">
+        <span class="n">2</span><strong>Contenidos vs. procesos</strong>
+        <small>Situaciones y campos conceptuales.</small>
+      </div>
+
+      <div class="axis a3">
+        <span class="n">3</span><strong>Roles y mediaciones</strong>
+        <small>Diálogo, representación y acompañamiento.</small>
+      </div>
+
+      <div class="axis a4">
+        <span class="n">4</span><strong>Síntesis de procesos</strong>
+        <small>Resolución, estrategias y metacognición.</small>
+      </div>
+
+      <button class="person p1" data-key="piaget">
+        <div class="photo">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Jean%20Piaget.jpg" alt="Jean Piaget">
         </div>
-
-        <div class="axis" style="--c:var(--green);margin-top:14px">
-          <div class="axis-title"><span class="num">3</span><span>Roles del docente, del estudiante y uso de fuentes</span></div>
-          <button class="node" data-key="freire"><span class="who"><span class="avatar">PF</span><span><b>Paulo Freire</b><small>Educación dialógica y problematizadora</small></span></span></button>
-          <button class="node" data-key="bruner"><span class="who"><span class="avatar">JB</span><span><b>Jerome Bruner</b><small>Representación, descubrimiento y apoyo gradual</small></span></span></button>
+        <div>
+          <strong>Jean Piaget</strong>
+          <span>Aprender también es reorganizar lo que pensamos.</span>
         </div>
-      </section>
+      </button>
 
-      <section class="center">
-        <button class="core" data-key="core">
-          <em>NÚCLEO EPISTEMOLÓGICO</em>
-          <strong>LA ALQUIMIA DEL SABER</strong>
-          <span>Transformar la memoria en motor</span>
-          <span>Didáctica de procesos</span>
-        </button>
-        <button class="special" data-key="tension">⚡ <b>NODO DE TENSIÓN</b><br>Contenidos ↔ Procesos</button>
-        <button class="special" style="border-color:var(--border);background:rgba(159,176,197,.05)" data-key="sintesis"><b>Síntesis integradora</b><br><span style="color:var(--muted)">¿Cómo convergen los cuatro ejes?</span></button>
-      </section>
-
-      <section>
-        <div class="axis" style="--c:var(--violet)">
-          <div class="axis-title"><span class="num">2</span><span>Contraste metodológico: contenidos vs. procesos</span></div>
-          <button class="node" data-key="brousseau"><span class="who"><span class="avatar">GB</span><span><b>Guy Brousseau</b><small>Teoría de las situaciones didácticas</small></span></span></button>
-          <button class="node" data-key="vergnaud"><span class="who"><span class="avatar">GV</span><span><b>Gérard Vergnaud</b><small>Teoría de los campos conceptuales</small></span></span></button>
+      <button class="person p2" data-key="vygotsky">
+        <div class="photo">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Lev%20Vygotsky.1923.png" alt="Lev Vygotsky">
         </div>
-
-        <div class="axis" style="--c:var(--gold);margin-top:14px">
-          <div class="axis-title"><span class="num">4</span><span>Síntesis de la didáctica de procesos en educación matemática</span></div>
-          <button class="node" data-key="schoenfeld"><span class="who"><span class="avatar">AS</span><span><b>Alan Schoenfeld</b><small>Resolución de problemas y metacognición</small></span></span></button>
-          <div class="processes">
-            <div class="proc">Comprender</div><div class="proc">Resolver</div><div class="proc">Razonar</div><div class="proc">Comunicar</div><div class="proc">Conectar</div>
-          </div>
+        <div>
+          <strong>Lev Vygotsky</strong>
+          <span>Se aprende mejor con diálogo, apoyo y mediación.</span>
         </div>
-      </section>
-    </div>
+      </button>
 
-    <div class="legend">
-      <div class="leg"><span class="line" style="--x:var(--cyan)"></span>Complementariedad</div>
-      <div class="leg"><span class="line" style="--x:var(--violet)"></span>Relación teórica</div>
-      <div class="leg"><span class="line dash" style="--x:var(--gold)"></span>Tensión o contraste</div>
-      <div class="leg"><span class="line dot" style="--x:#d9e6f5"></span>Articulación integradora</div>
-    </div>
-  </main>
+      <button class="person p3" data-key="ausubel">
+        <div class="photo">
+          <img src="https://www.biografiasyvidas.com/biografia/a/fotos/ausubel.jpg" alt="David Ausubel">
+        </div>
+        <div>
+          <strong>David Ausubel</strong>
+          <span>Lo nuevo tiene sentido cuando conecta con lo previo.</span>
+        </div>
+      </button>
 
-  <footer>Explora el holograma: selecciona autores y nodos para profundizar en sus aportes.</footer>
-</div>
+      <button class="person p4" data-key="brousseau">
+        <div class="photo">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Guy-Brousseau.jpg" alt="Guy Brousseau">
+        </div>
+        <div>
+          <strong>Guy Brousseau</strong>
+          <span>Las situaciones bien pensadas hacen aparecer el saber.</span>
+        </div>
+      </button>
 
-<div class="modal" id="modal">
-  <div class="dialog" role="dialog" aria-modal="true">
-    <div class="dialog-top">
-      <div><div class="kicker" id="kicker"></div><h2 id="title"></h2><div class="subtitle" id="subtitle"></div></div>
-      <button class="close" id="close">✕</button>
-    </div>
-    <div id="body"></div>
+      <button class="person p5" data-key="vergnaud">
+        <div class="photo">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/GerardVergnaud.jpg" alt="Gérard Vergnaud">
+        </div>
+        <div>
+          <strong>Gérard Vergnaud</strong>
+          <span>Un concepto se entiende mejor en varios contextos.</span>
+        </div>
+      </button>
+
+      <button class="person p6" data-key="freire">
+        <div class="photo">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Paulo%20Freire%201977%20close-up%20%28cropped%29.jpg" alt="Paulo Freire">
+        </div>
+        <div>
+          <strong>Paulo Freire</strong>
+          <span>Aprender no es repetir: también es pensar y dialogar.</span>
+        </div>
+      </button>
+
+      <button class="person p7" data-key="bruner">
+        <div class="photo">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Jerome%20Bruner%201936.png" alt="Jerome Bruner">
+        </div>
+        <div>
+          <strong>Jerome Bruner</strong>
+          <span>El docente acompaña el paso a lo abstracto.</span>
+        </div>
+      </button>
+
+      <button class="person p8" data-key="schoenfeld">
+        <div class="photo">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Alan%20Schoenfeld%201998.jpg" alt="Alan Schoenfeld">
+        </div>
+        <div>
+          <strong>Alan Schoenfeld</strong>
+          <span>Resolver problemas también es pensar cómo pensamos.</span>
+        </div>
+      </button>
+
+      <button class="core" data-key="core">
+        <div class="inner">
+          <div class="tiny">0 · núcleo</div>
+          <h2>La alquimia del saber</h2>
+          <p>La memoria no desaparece, pero deja de ser el final del aprendizaje.</p>
+        </div>
+      </button>
+
+      <button class="note tension" data-key="tension">
+        <b>5 · nodo de tensión</b>
+        <span>Contenidos ↔ procesos: no se trata de elegir uno y borrar el otro.</span>
+      </button>
+
+      <button class="note synth" data-key="sintesis">
+        <b>6 · síntesis final</b>
+        <span>Todos los aportes convergen en una enseñanza más comprensiva y reflexiva.</span>
+      </button>
+
+      <div class="route">
+        <i>0</i><em>→</em><i>1</i><em>→</em><i>2</i><em>→</em><i>3</i><em>→</em><i>4</i><em>→</em><i>5</i><em>→</em><i>6</i>
+      </div>
+    </section>
+
+    <footer>
+      Si una imagen no carga, solo reemplaza ese enlace por otra foto del autor.
+    </footer>
   </div>
-</div>
 
-<script>
-const data={
-piaget:{k:"Eje 1 · Fundamentos epistemológicos",t:"Jean Piaget",s:"Constructivismo genético",b:[
-"<strong>Concepto clave:</strong> construcción activa del conocimiento.",
-"El aprendizaje supone una reorganización progresiva de las estructuras cognitivas mediante <strong>asimilación, acomodación y equilibración</strong>. En matemática, el estudiante no se limita a recibir respuestas: actúa sobre las situaciones y reconstruye su comprensión.",
-"<strong>Aporte:</strong> sitúa al estudiante como constructor activo del conocimiento y permite comprender el aprendizaje como transformación de estructuras cognitivas.",
-"<strong>Conexión:</strong> converge con Vygotsky en el carácter constructivo del aprendizaje, aunque Piaget enfatiza especialmente la reorganización cognitiva del sujeto."
-]},
-vygotsky:{k:"Eje 1 · Fundamentos epistemológicos",t:"Lev Vygotsky",s:"Socioconstructivismo y Zona de Desarrollo Próximo",b:[
-"<strong>Concepto clave:</strong> el aprendizaje está mediado social y culturalmente.",
-"La <strong>Zona de Desarrollo Próximo</strong> expresa la distancia entre lo que el estudiante puede realizar de manera independiente y lo que puede alcanzar con orientación o colaboración. El lenguaje y la interacción social median la construcción del pensamiento.",
-"<strong>Aporte:</strong> la enseñanza matemática debe generar diálogo, cooperación y mediaciones que permitan al estudiante avanzar hacia niveles de mayor autonomía.",
-"<strong>Conexión:</strong> complementa a Piaget al otorgar mayor peso al contexto sociocultural y a la interacción con otros."
-]},
-ausubel:{k:"Eje 1 · Fundamentos epistemológicos",t:"David Ausubel",s:"Aprendizaje significativo",b:[
-"<strong>Concepto clave:</strong> relación sustantiva entre los nuevos conocimientos y la estructura cognitiva previa.",
-"El aprendizaje adquiere significado cuando la nueva información puede vincularse de manera no arbitraria con conocimientos relevantes ya disponibles en el estudiante.",
-"<strong>Aporte:</strong> en matemática no basta memorizar algoritmos; el nuevo saber necesita conectarse con ideas previas para producir comprensión.",
-"<strong>Tensión:</strong> aprendizaje significativo frente a aprendizaje puramente memorístico."
-]},
-brousseau:{k:"Eje 2 · Contraste metodológico",t:"Guy Brousseau",s:"Teoría de las Situaciones Didácticas",b:[
-"<strong>Concepto clave:</strong> el conocimiento matemático emerge en la interacción del estudiante con situaciones y con un medio diseñado didácticamente.",
-"El docente organiza condiciones para que el estudiante formule estrategias, confronte resultados y produzca conocimiento. La situación no entrega inmediatamente el procedimiento: crea una necesidad matemática.",
-"<strong>Aporte:</strong> desplaza el centro desde la explicación del docente hacia la actividad matemática del estudiante, sin eliminar la función de diseño e institucionalización del profesor."
-]},
-vergnaud:{k:"Eje 2 · Contraste metodológico",t:"Gérard Vergnaud",s:"Teoría de los Campos Conceptuales",b:[
-"<strong>Concepto clave:</strong> un concepto no se construye a partir de una única situación.",
-"La comprensión se desarrolla mediante <strong>familias de situaciones</strong>, esquemas de acción y relaciones conceptuales que se reorganizan progresivamente.",
-"<strong>Aporte:</strong> la enseñanza matemática debe ofrecer variedad de problemas y contextos para favorecer la construcción y transferencia de los conceptos.",
-"<strong>Conexión:</strong> dialoga con Brousseau al reconocer la centralidad de las situaciones en la producción de conocimiento matemático."
-]},
-freire:{k:"Eje 3 · Roles y fuentes",t:"Paulo Freire",s:"Educación dialógica y problematizadora",b:[
-"<strong>Concepto clave:</strong> aprender implica diálogo, reflexión y problematización de la realidad.",
-"El estudiante no es un recipiente de información; participa como sujeto activo y crítico. El docente tampoco desaparece: orienta, pregunta, dialoga y crea condiciones para la comprensión.",
-"<strong>Aporte:</strong> permite pensar una didáctica matemática donde los problemas se relacionan con contextos significativos y donde el conocimiento se construye mediante participación crítica."
-]},
-bruner:{k:"Eje 3 · Roles y fuentes",t:"Jerome Bruner",s:"Representación, descubrimiento y apoyo gradual",b:[
-"<strong>Concepto clave:</strong> el conocimiento puede representarse de forma enactiva, icónica y simbólica.",
-"En matemática, el estudiante puede avanzar desde la acción y las representaciones visuales hacia formas simbólicas y abstractas. Su enfoque se asocia también al apoyo gradual o andamiaje que se retira a medida que aumenta la autonomía.",
-"<strong>Aporte:</strong> el docente organiza experiencias, representaciones y apoyos que permiten explorar relaciones y construir significados."
-]},
-schoenfeld:{k:"Eje 4 · Síntesis de procesos",t:"Alan Schoenfeld",s:"Resolución de problemas y pensamiento matemático",b:[
-"<strong>Concepto clave:</strong> resolver problemas moviliza más que conocimientos declarativos.",
-"Schoenfeld destaca la interacción entre <strong>recursos matemáticos, estrategias heurísticas, control o metacognición y sistemas de creencias</strong>.",
-"<strong>Aporte:</strong> aprender matemática implica comprender, planificar, monitorear, justificar y verificar, no únicamente ejecutar algoritmos previamente enseñados.",
-"<strong>Síntesis:</strong> su propuesta ayuda a integrar la didáctica de procesos alrededor de la actividad matemática consciente y estratégica."
-]},
-core:{k:"Núcleo epistemológico",t:"La alquimia del saber",s:"Transformar la memoria en motor",b:[
-"El núcleo representa el tránsito desde una enseñanza centrada principalmente en la <strong>transmisión y memorización</strong> hacia una enseñanza en la que el conocimiento matemático se construye, relaciona, problematiza, representa, comunica y regula conscientemente.",
-"Los autores no forman una teoría única; aportan perspectivas complementarias y, en algunos puntos, tensiones. Su articulación permite comprender al estudiante como sujeto activo y al docente como mediador, diseñador de situaciones y orientador de procesos."
-]},
-tension:{k:"Nodo de tensión teórica",t:"Contenidos ↔ Procesos",s:"Contraste metodológico",b:[
-"La didáctica de procesos <strong>no elimina los contenidos</strong>. Cambia la función que cumplen dentro de la enseñanza.",
-"En un enfoque predominantemente centrado en contenidos, el éxito puede reducirse a recordar definiciones o reproducir procedimientos. En un enfoque centrado en procesos, esos contenidos se movilizan para <strong>comprender, resolver, argumentar, representar, comunicar y transferir</strong>.",
-"La tensión central puede expresarse así: pasar de preguntar solamente “¿qué recuerda el estudiante?” a preguntar también “¿qué puede hacer, explicar y justificar con lo que sabe?”."
-]},
-sintesis:{k:"Articulación integradora",t:"Didáctica de procesos en educación matemática",s:"Síntesis de los cuatro ejes",b:[
-"<strong>Construcción:</strong> Piaget, Vygotsky y Ausubel ayudan a explicar cómo el conocimiento se construye, media y relaciona con saberes previos.",
-"<strong>Situaciones y conceptualización:</strong> Brousseau y Vergnaud muestran la importancia de problemas, situaciones y campos conceptuales.",
-"<strong>Relaciones educativas:</strong> Freire y Bruner permiten repensar los papeles del docente, del estudiante y de las representaciones utilizadas para aprender.",
-"<strong>Actividad matemática:</strong> Schoenfeld integra la mirada hacia procesos como resolución de problemas, estrategias y metacognición."
-]}
-};
-const modal=document.getElementById("modal"),title=document.getElementById("title"),subtitle=document.getElementById("subtitle"),
-kicker=document.getElementById("kicker"),body=document.getElementById("body");
-function openModal(key){const d=data[key];kicker.textContent=d.k;title.textContent=d.t;subtitle.textContent=d.s;body.innerHTML=d.b.map(p=>`<p>${p}</p>`).join("");modal.classList.add("show")}
-function closeModal(){modal.classList.remove("show")}
-document.querySelectorAll("[data-key]").forEach(el=>el.addEventListener("click",()=>openModal(el.dataset.key)));
-document.getElementById("close").addEventListener("click",closeModal);
-modal.addEventListener("click",e=>{if(e.target===modal)closeModal()});
-document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
-</script>
+  <div class="modal" id="modal">
+    <article class="dialog">
+      <div class="dialoghead">
+        <div class="bigphoto" id="bigphoto"></div>
+        <div>
+          <div class="tag" id="tag"></div>
+          <h3 id="title"></h3>
+          <div class="sub" id="sub"></div>
+        </div>
+        <button class="close" id="close">Cerrar</button>
+      </div>
+
+      <div id="body"></div>
+
+      <div class="credit">
+        Versión breve y minimalista del holograma.
+      </div>
+    </article>
+  </div>
+
+  <script>
+    const portraits = {
+      piaget: "https://commons.wikimedia.org/wiki/Special:FilePath/Jean%20Piaget.jpg",
+      vygotsky: "https://commons.wikimedia.org/wiki/Special:FilePath/Lev%20Vygotsky.1923.png",
+      ausubel: "https://www.biografiasyvidas.com/biografia/a/fotos/ausubel.jpg",
+      brousseau: "https://commons.wikimedia.org/wiki/Special:FilePath/Guy-Brousseau.jpg",
+      vergnaud: "https://commons.wikimedia.org/wiki/Special:FilePath/GerardVergnaud.jpg",
+      freire: "https://commons.wikimedia.org/wiki/Special:FilePath/Paulo%20Freire%201977%20close-up%20%28cropped%29.jpg",
+      bruner: "https://commons.wikimedia.org/wiki/Special:FilePath/Jerome%20Bruner%201936.png",
+      schoenfeld: "https://commons.wikimedia.org/wiki/Special:FilePath/Alan%20Schoenfeld%201998.jpg"
+    };
+
+    const data = {
+      core: {
+        tag: "0 · Núcleo central",
+        title: "La alquimia del saber",
+        sub: "Transformar la memoria en motor",
+        sections: [
+          ["Idea central", "La memoria no desaparece de la enseñanza, pero cambia de función. Ya no se queda como meta final, sino que sirve de base para comprender, argumentar y resolver."],
+          ["Sentido del holograma", "La pregunta principal es esta: ¿qué cambia cuando aprender matemáticas deja de ser solo recordar y pasa a ser pensar con lo aprendido?"]
+        ]
+      },
+
+      piaget: {
+        tag: "1 · Eje 1",
+        title: "Jean Piaget",
+        sub: "Construcción activa del conocimiento",
+        sections: [
+          ["Idea clave", "Aprender implica reorganizar lo que pensamos. El estudiante no recibe el conocimiento terminado, sino que lo va construyendo."],
+          ["Aporte", "Nos ayuda a ver la matemática como una actividad donde se compara, se prueba y se corrige."],
+          ["Ejemplo", "Antes de dar una fórmula, se puede proponer una situación para que el estudiante piense cómo resolverla."]
+        ]
+      },
+
+      vygotsky: {
+        tag: "1 · Eje 1",
+        title: "Lev Vygotsky",
+        sub: "Mediación social y Zona de Desarrollo Próximo",
+        sections: [
+          ["Idea clave", "El aprendizaje se fortalece cuando hay acompañamiento, diálogo y trabajo con otros."],
+          ["Aporte", "Hace visible la importancia del docente como mediador y del lenguaje como herramienta para aprender."],
+          ["Ejemplo", "Un estudiante puede resolver mejor un problema cuando recibe preguntas guía o apoyo de un compañero."]
+        ]
+      },
+
+      ausubel: {
+        tag: "1 · Eje 1",
+        title: "David Ausubel",
+        sub: "Aprendizaje significativo",
+        sections: [
+          ["Idea clave", "Lo nuevo se comprende mejor cuando puede relacionarse con lo que ya sabemos."],
+          ["Aporte", "Recuerda que enseñar matemáticas no es llenar de información, sino conectar ideas."],
+          ["Ejemplo", "Antes de trabajar fracciones equivalentes, se pueden recuperar experiencias de reparto."]
+        ]
+      },
+
+      brousseau: {
+        tag: "2 · Eje 2",
+        title: "Guy Brousseau",
+        sub: "Situaciones didácticas",
+        sections: [
+          ["Idea clave", "El conocimiento puede surgir cuando el estudiante se enfrenta a una situación bien diseñada."],
+          ["Aporte", "Resalta que el profesor también enseña cuando crea buenas situaciones para pensar."],
+          ["Ejemplo", "En vez de explicar primero un procedimiento, se presenta un problema que haga necesario ese conocimiento."]
+        ]
+      },
+
+      vergnaud: {
+        tag: "2 · Eje 2",
+        title: "Gérard Vergnaud",
+        sub: "Campos conceptuales",
+        sections: [
+          ["Idea clave", "Un concepto no se entiende de una sola vez ni en un solo ejercicio."],
+          ["Aporte", "Invita a trabajar la misma idea en varios contextos para que la comprensión sea más flexible."],
+          ["Ejemplo", "La proporcionalidad puede aparecer en escalas, porcentajes, razones y gráficos."]
+        ]
+      },
+
+      freire: {
+        tag: "3 · Eje 3",
+        title: "Paulo Freire",
+        sub: "Diálogo y problematización",
+        sections: [
+          ["Idea clave", "Aprender no es repetir lo que otro dice; también es interpretar, preguntar y dialogar."],
+          ["Aporte", "Da una mirada más humana y crítica al proceso educativo."],
+          ["Ejemplo", "En clase, no solo importa el resultado, sino cómo se pensó y cómo se argumenta."]
+        ]
+      },
+
+      bruner: {
+        tag: "3 · Eje 3",
+        title: "Jerome Bruner",
+        sub: "Representación y andamiaje",
+        sections: [
+          ["Idea clave", "El docente acompaña el paso desde lo concreto hasta lo más abstracto."],
+          ["Aporte", "Ayuda a entender por qué conviene representar las ideas de varias maneras."],
+          ["Ejemplo", "Se puede iniciar con material concreto, luego un dibujo y después la notación simbólica."]
+        ]
+      },
+
+      schoenfeld: {
+        tag: "4 · Eje 4",
+        title: "Alan Schoenfeld",
+        sub: "Resolución de problemas y metacognición",
+        sections: [
+          ["Idea clave", "Resolver problemas también implica pensar en la estrategia y revisar el propio proceso."],
+          ["Aporte", "Integra contenido, reflexión y toma de decisiones."],
+          ["Ejemplo", "Después de resolver un problema, se analiza qué funcionó y por qué."]
+        ]
+      },
+
+      tension: {
+        tag: "5 · Nodo de tensión",
+        title: "Contenidos ↔ procesos",
+        sub: "Una tensión importante",
+        sections: [
+          ["Contraste", "No se trata de borrar los contenidos, sino de evitar que se queden en pura repetición."],
+          ["Lectura", "Los contenidos siguen siendo necesarios, pero ahora sirven para comprender, argumentar y resolver."]
+        ]
+      },
+
+      sintesis: {
+        tag: "6 · Síntesis final",
+        title: "Articulación del holograma",
+        sub: "Cierre general",
+        sections: [
+          ["Síntesis", "Todos estos autores ayudan a entender que aprender matemáticas no es solo recordar, sino construir sentido, resolver problemas y reflexionar sobre lo que hacemos."],
+          ["Idea final", "La memoria sigue estando presente, pero ya no es el punto final: se convierte en motor del pensamiento."]
+        ]
+      }
+    };
+
+    const modal = document.getElementById("modal");
+    const bigphoto = document.getElementById("bigphoto");
+    const tag = document.getElementById("tag");
+    const title = document.getElementById("title");
+    const sub = document.getElementById("sub");
+    const body = document.getElementById("body");
+    const close = document.getElementById("close");
+
+    function openModal(key){
+      const d = data[key];
+      tag.textContent = d.tag;
+      title.textContent = d.title;
+      sub.textContent = d.sub;
+
+      bigphoto.innerHTML = portraits[key]
+        ? `<img src="${portraits[key]}" alt="${d.title}">`
+        : "";
+
+      body.innerHTML = d.sections.map(([label, text]) => `
+        <section class="section">
+          <div class="label">${label}</div>
+          <p>${text}</p>
+        </section>
+      `).join("");
+
+      modal.classList.add("show");
+    }
+
+    function closeModal(){
+      modal.classList.remove("show");
+    }
+
+    document.querySelectorAll("[data-key]").forEach(el => {
+      el.addEventListener("click", () => openModal(el.dataset.key));
+    });
+
+    close.addEventListener("click", closeModal);
+
+    modal.addEventListener("click", (e) => {
+      if(e.target === modal) closeModal();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if(e.key === "Escape") closeModal();
+    });
+  </script>
 </body>
 </html>
