@@ -16,7 +16,6 @@
 
   <title>La alquimia del saber | Holograma epistemológico</title>
 
-  <!-- Nuestro archivo de estilos -->
   <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -25,9 +24,10 @@
 
   <main class="page">
 
-    <!-- ==============================
+
+    <!-- =====================================================
          ENCABEZADO
-    =============================== -->
+    ====================================================== -->
 
     <header class="hero">
 
@@ -46,35 +46,327 @@
         </p>
 
         <p class="hero-description">
-          Propuesta visual sobre la didáctica de procesos en educación matemática.
-          El núcleo presenta la idea principal y los diferentes ejes permiten explorar
-          autores, relaciones y tensiones pedagógicas.
+          Una red epistemológica sobre la didáctica de procesos en educación
+          matemática. Explora sus fundamentos, autores, convergencias,
+          tensiones y relaciones conceptuales.
         </p>
 
       </div>
 
+
       <div class="interaction-hint">
-        <span class="hint-icon">✦</span>
-        Haz clic en cada eje para explorarlo
+
+        <span class="hint-icon">
+          ✦
+        </span>
+
+        Pulsa los ejes y autores para explorar
+
       </div>
 
     </header>
 
 
-    <!-- ==============================
-         HOLOGRAMA
-    =============================== -->
+
+    <!-- =====================================================
+         HOLOGRAMA EPISTEMOLÓGICO
+    ====================================================== -->
 
     <section
-      class="hologram"
-      aria-label="Holograma epistemológico"
+      class="hologram epistemic-network"
+      aria-label="Holograma epistemológico interactivo"
     >
 
 
-      <!-- ==================================
+      <!-- CAPAS DE PROFUNDIDAD -->
+
+      <div
+        class="depth-layer depth-layer-1"
+        aria-hidden="true"
+      ></div>
+
+      <div
+        class="depth-layer depth-layer-2"
+        aria-hidden="true"
+      ></div>
+
+      <div
+        class="depth-layer depth-layer-3"
+        aria-hidden="true"
+      ></div>
+
+
+
+      <!-- =================================================
+           CONEXIONES EPISTEMOLÓGICAS
+      ================================================== -->
+
+      <svg
+        class="knowledge-links"
+        viewBox="0 0 1400 1100"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+
+        <defs>
+
+          <marker
+            id="arrow-blue"
+            markerWidth="7"
+            markerHeight="7"
+            refX="6"
+            refY="3.5"
+            orient="auto"
+          >
+            <polygon
+              points="0 0, 7 3.5, 0 7"
+              fill="#43a9c9"
+            />
+          </marker>
+
+
+          <marker
+            id="arrow-purple"
+            markerWidth="7"
+            markerHeight="7"
+            refX="6"
+            refY="3.5"
+            orient="auto"
+          >
+            <polygon
+              points="0 0, 7 3.5, 0 7"
+              fill="#9474d1"
+            />
+          </marker>
+
+
+          <marker
+            id="arrow-green"
+            markerWidth="7"
+            markerHeight="7"
+            refX="6"
+            refY="3.5"
+            orient="auto"
+          >
+            <polygon
+              points="0 0, 7 3.5, 0 7"
+              fill="#66a46e"
+            />
+          </marker>
+
+
+          <marker
+            id="arrow-gold"
+            markerWidth="7"
+            markerHeight="7"
+            refX="6"
+            refY="3.5"
+            orient="auto"
+          >
+            <polygon
+              points="0 0, 7 3.5, 0 7"
+              fill="#d7a046"
+            />
+          </marker>
+
+
+          <marker
+            id="arrow-convergence"
+            markerWidth="7"
+            markerHeight="7"
+            refX="6"
+            refY="3.5"
+            orient="auto"
+          >
+            <polygon
+              points="0 0, 7 3.5, 0 7"
+              fill="#52a6ad"
+            />
+          </marker>
+
+
+          <marker
+            id="arrow-tension"
+            markerWidth="7"
+            markerHeight="7"
+            refX="6"
+            refY="3.5"
+            orient="auto"
+          >
+            <polygon
+              points="0 0, 7 3.5, 0 7"
+              fill="#c47d4f"
+            />
+          </marker>
+
+        </defs>
+
+
+
+        <!-- NÚCLEO → EJE 1 -->
+
+        <path
+          class="link link-main link-blue"
+          d="M610 390 C520 320, 420 245, 315 180"
+          marker-end="url(#arrow-blue)"
+        />
+
+
+        <!-- NÚCLEO → EJE 2 -->
+
+        <path
+          class="link link-main link-purple"
+          d="M790 390 C885 315, 985 245, 1085 180"
+          marker-end="url(#arrow-purple)"
+        />
+
+
+        <!-- NÚCLEO → EJE 3 -->
+
+        <path
+          class="link link-main link-green"
+          d="M610 495 C515 545, 410 610, 315 675"
+          marker-end="url(#arrow-green)"
+        />
+
+
+        <!-- NÚCLEO → EJE 4 -->
+
+        <path
+          class="link link-main link-gold"
+          d="M790 495 C880 550, 980 615, 1085 675"
+          marker-end="url(#arrow-gold)"
+        />
+
+
+
+        <!-- CONVERGENCIA:
+             VYGOTSKY / BRUNER -->
+
+        <path
+          class="link link-convergence"
+          d="M345 290 C420 390, 465 465, 515 555"
+          marker-end="url(#arrow-convergence)"
+        />
+
+        <path
+          class="link link-convergence"
+          d="M350 710 C430 650, 470 610, 515 565"
+          marker-end="url(#arrow-convergence)"
+        />
+
+
+
+        <!-- CONVERGENCIA:
+             BROUSSEAU / VERGNAUD / SCHOENFELD -->
+
+        <path
+          class="link link-convergence"
+          d="M1055 300 C980 390, 940 470, 890 560"
+          marker-end="url(#arrow-convergence)"
+        />
+
+        <path
+          class="link link-convergence"
+          d="M1050 710 C975 650, 935 610, 890 570"
+          marker-end="url(#arrow-convergence)"
+        />
+
+
+
+        <!-- HACIA NODO DE TENSIÓN -->
+
+        <path
+          class="link link-tension"
+          d="M1050 320 C980 500, 875 690, 760 820"
+          marker-end="url(#arrow-tension)"
+        />
+
+        <path
+          class="link link-tension"
+          d="M1050 720 C930 760, 850 790, 760 835"
+          marker-end="url(#arrow-tension)"
+        />
+
+
+
+        <!-- CONVERGENCIAS → NODO DE TENSIÓN -->
+
+        <path
+          class="link link-secondary"
+          d="M565 585 C610 660, 650 730, 685 805"
+        />
+
+        <path
+          class="link link-secondary"
+          d="M835 585 C790 660, 750 730, 715 805"
+        />
+
+
+
+        <!-- NODO DE TENSIÓN → SÍNTESIS -->
+
+        <path
+          class="link link-final"
+          d="M700 900 L700 982"
+          marker-end="url(#arrow-convergence)"
+        />
+
+      </svg>
+
+
+
+      <!-- =====================================================
+           NIVEL 0
+           NÚCLEO CENTRAL
+      ====================================================== -->
+
+      <button
+        class="core"
+        type="button"
+        data-key="core"
+      >
+
+        <span class="core-orbit orbit-one"></span>
+
+        <span class="core-orbit orbit-two"></span>
+
+        <span class="core-orbit orbit-three"></span>
+
+
+        <span class="core-content">
+
+          <small>
+            0 · Núcleo epistemológico
+          </small>
+
+          <strong>
+            La alquimia
+            <br>
+            del saber
+          </strong>
+
+          <span class="core-divider"></span>
+
+          <p>
+            La memoria no desaparece:
+            se transforma en punto de partida
+            para comprender, argumentar y resolver.
+          </p>
+
+          <span class="core-action">
+            Explorar núcleo
+          </span>
+
+        </span>
+
+      </button>
+
+
+
+      <!-- =====================================================
            EJE 1
-           FUNDAMENTOS
-      =================================== -->
+      ====================================================== -->
 
       <section class="axis-group axis-1">
 
@@ -82,6 +374,7 @@
           class="axis-card"
           type="button"
           data-axis="axis1"
+          aria-controls="axis1"
           aria-expanded="false"
         >
 
@@ -112,6 +405,7 @@
           class="authors-panel"
           id="axis1"
         >
+
 
           <!-- PIAGET -->
 
@@ -144,7 +438,7 @@
               </strong>
 
               <small>
-                El conocimiento también se construye reorganizando lo que pensamos.
+                Construcción activa del conocimiento.
               </small>
 
             </span>
@@ -154,6 +448,7 @@
             </span>
 
           </button>
+
 
 
           <!-- VYGOTSKY -->
@@ -187,7 +482,7 @@
               </strong>
 
               <small>
-                Aprender tiene una dimensión social y mediada por el lenguaje.
+                Mediación social, lenguaje y acompañamiento.
               </small>
 
             </span>
@@ -197,6 +492,7 @@
             </span>
 
           </button>
+
 
 
           <!-- AUSUBEL -->
@@ -230,7 +526,7 @@
               </strong>
 
               <small>
-                Lo nuevo cobra sentido cuando se conecta con saberes previos.
+                Aprendizaje significativo y conocimientos previos.
               </small>
 
             </span>
@@ -247,10 +543,9 @@
 
 
 
-      <!-- ==================================
+      <!-- =====================================================
            EJE 2
-           CONTENIDOS VS PROCESOS
-      =================================== -->
+      ====================================================== -->
 
       <section class="axis-group axis-2">
 
@@ -258,6 +553,7 @@
           class="axis-card"
           type="button"
           data-axis="axis2"
+          aria-controls="axis2"
           aria-expanded="false"
         >
 
@@ -288,6 +584,7 @@
           class="authors-panel"
           id="axis2"
         >
+
 
           <!-- BROUSSEAU -->
 
@@ -320,7 +617,7 @@
               </strong>
 
               <small>
-                Una buena situación didáctica hace necesario el conocimiento.
+                Situaciones didácticas que provocan pensamiento.
               </small>
 
             </span>
@@ -330,6 +627,7 @@
             </span>
 
           </button>
+
 
 
           <!-- VERGNAUD -->
@@ -363,7 +661,7 @@
               </strong>
 
               <small>
-                Los conceptos se fortalecen en una diversidad de situaciones.
+                Conceptos construidos en diversidad de situaciones.
               </small>
 
             </span>
@@ -380,53 +678,9 @@
 
 
 
-      <!-- ==================================
-           NÚCLEO CENTRAL
-      =================================== -->
-
-      <button
-        class="core"
-        type="button"
-        data-key="core"
-      >
-
-        <span class="core-orbit orbit-one"></span>
-        <span class="core-orbit orbit-two"></span>
-        <span class="core-orbit orbit-three"></span>
-
-        <span class="core-content">
-
-          <small>
-            0 · Núcleo central
-          </small>
-
-          <strong>
-            La alquimia
-            <br>
-            del saber
-          </strong>
-
-          <span class="core-divider"></span>
-
-          <p>
-            La memoria no desaparece: se transforma en punto de partida
-            para comprender, argumentar y resolver.
-          </p>
-
-          <span class="core-action">
-            Explorar núcleo
-          </span>
-
-        </span>
-
-      </button>
-
-
-
-      <!-- ==================================
+      <!-- =====================================================
            EJE 3
-           ROLES Y MEDIACIONES
-      =================================== -->
+      ====================================================== -->
 
       <section class="axis-group axis-3">
 
@@ -434,6 +688,7 @@
           class="axis-card"
           type="button"
           data-axis="axis3"
+          aria-controls="axis3"
           aria-expanded="false"
         >
 
@@ -464,6 +719,7 @@
           class="authors-panel"
           id="axis3"
         >
+
 
           <!-- FREIRE -->
 
@@ -496,7 +752,7 @@
               </strong>
 
               <small>
-                Aprender también es dialogar, preguntar e interpretar.
+                Diálogo, problematización e interpretación.
               </small>
 
             </span>
@@ -506,6 +762,7 @@
             </span>
 
           </button>
+
 
 
           <!-- BRUNER -->
@@ -539,7 +796,7 @@
               </strong>
 
               <small>
-                El andamiaje ayuda a pasar de lo concreto a lo abstracto.
+                Representación, andamiaje y tránsito hacia lo abstracto.
               </small>
 
             </span>
@@ -556,10 +813,9 @@
 
 
 
-      <!-- ==================================
+      <!-- =====================================================
            EJE 4
-           SÍNTESIS DE PROCESOS
-      =================================== -->
+      ====================================================== -->
 
       <section class="axis-group axis-4">
 
@@ -567,6 +823,7 @@
           class="axis-card"
           type="button"
           data-axis="axis4"
+          aria-controls="axis4"
           aria-expanded="false"
         >
 
@@ -597,6 +854,7 @@
           class="authors-panel"
           id="axis4"
         >
+
 
           <!-- SCHOENFELD -->
 
@@ -629,7 +887,7 @@
               </strong>
 
               <small>
-                Resolver problemas exige estrategia y revisión del propio pensamiento.
+                Resolución de problemas, estrategia y metacognición.
               </small>
 
             </span>
@@ -646,103 +904,162 @@
 
 
 
-      <!-- ==================================
-           INTEGRACIÓN
-      =================================== -->
+      <!-- =====================================================
+           NODOS DE CONVERGENCIA
+      ====================================================== -->
 
-      <section class="integration">
+      <div
+        class="relation-node convergence-node convergence-1"
+      >
+
+        <span class="relation-type">
+          Convergencia
+        </span>
+
+        <strong>
+          Mediación y andamiaje
+        </strong>
+
+        <small>
+          Vygotsky ↔ Bruner
+        </small>
+
+      </div>
 
 
-        <!-- NODO DE TENSIÓN -->
 
-        <button
-          class="integration-card tension-card"
-          type="button"
-          data-key="tension"
-        >
+      <div
+        class="relation-node convergence-node convergence-2"
+      >
 
-          <span class="integration-icon">
-            ↔
+        <span class="relation-type">
+          Convergencia
+        </span>
+
+        <strong>
+          Situaciones, estrategias y resolución
+        </strong>
+
+        <small>
+          Brousseau · Vergnaud · Schoenfeld
+        </small>
+
+      </div>
+
+
+
+      <!-- =====================================================
+           NODO DE TENSIÓN
+      ====================================================== -->
+
+      <button
+        class="relation-node tension-node"
+        type="button"
+        data-key="tension"
+      >
+
+        <span class="relation-symbol">
+          ↔
+        </span>
+
+        <span class="relation-text">
+
+          <span class="relation-type">
+            5 · Nodo de tensión
           </span>
 
-          <span>
+          <strong>
+            Contenidos ↔ procesos
+          </strong>
 
-            <strong>
-              5 · Nodo de tensión
-            </strong>
+          <small>
+            Los contenidos son necesarios, pero deben ponerse al servicio
+            de la comprensión, la argumentación y la resolución.
+          </small>
 
-            <small>
-              Contenidos ↔ procesos
-            </small>
+        </span>
 
-            <p>
-              La enseñanza no debe quedarse solo en repetir,
-              pero tampoco prescindir del contenido.
-            </p>
-
-          </span>
-
-          <span class="integration-arrow">
-            ›
-          </span>
-
-        </button>
+      </button>
 
 
 
-        <!-- CONECTOR -->
+      <!-- =====================================================
+           SÍNTESIS FINAL
+      ====================================================== -->
 
-        <div class="integration-connector">
-          ↓
-        </div>
+      <button
+        class="final-node synthesis-node"
+        type="button"
+        data-key="sintesis"
+      >
+
+        <span class="final-icon">
+          ✦
+        </span>
+
+        <span>
+
+          <small>
+            6 · Síntesis final
+          </small>
+
+          <strong>
+            Articulación del holograma
+          </strong>
+
+          <p>
+            Construir, mediar, dialogar, resolver y reflexionar
+            convergen en una enseñanza matemática más comprensiva,
+            crítica y significativa.
+          </p>
+
+        </span>
+
+      </button>
 
 
 
-        <!-- SÍNTESIS FINAL -->
+      <!-- =====================================================
+           LEYENDA
+      ====================================================== -->
 
-        <button
-          class="integration-card synthesis-card"
-          type="button"
-          data-key="sintesis"
-        >
+      <div class="network-legend">
 
-          <span class="integration-icon">
-            ✦
-          </span>
+        <span class="legend-item">
 
-          <span>
+          <i class="legend-line direct"></i>
 
-            <strong>
-              6 · Síntesis final
-            </strong>
+          Relación directa
 
-            <small>
-              Articulación del holograma
-            </small>
+        </span>
 
-            <p>
-              Los cuatro ejes convergen en una visión más comprensiva,
-              reflexiva y humana de la enseñanza matemática.
-            </p>
 
-          </span>
+        <span class="legend-item">
 
-          <span class="integration-arrow">
-            ›
-          </span>
+          <i class="legend-line convergence"></i>
 
-        </button>
+          Convergencia
 
-      </section>
+        </span>
 
+
+        <span class="legend-item">
+
+          <i class="legend-line tension"></i>
+
+          Tensión
+
+        </span>
+
+      </div>
 
     </section>
 
 
 
-    <!-- ==============================
+    <!-- =====================================================
          RUTA CONCEPTUAL
-    =============================== -->
+    ====================================================== -->
 
     <nav
       class="concept-route"
@@ -772,6 +1089,7 @@
     </nav>
 
 
+
     <footer class="footer">
 
       Holograma epistemológico · Didáctica de procesos en educación matemática
@@ -782,9 +1100,9 @@
 
 
 
-  <!-- ==================================================
+  <!-- =====================================================
        MODAL
-  =================================================== -->
+  ====================================================== -->
 
   <div
     class="modal"
@@ -844,9 +1162,10 @@
 
       <div class="modal-note">
 
-        Este holograma presenta una lectura visual y organizada de la
-        didáctica de procesos, entendiendo las ideas de los autores como
-        un sistema de relaciones y no como teorías aisladas.
+        El holograma debe leerse como una red:
+        los autores aportan perspectivas diferentes,
+        algunas convergen y otras generan tensiones
+        que enriquecen la comprensión de la enseñanza matemática.
 
       </div>
 
@@ -856,43 +1175,41 @@
 
 
 
-  <!-- ==================================================
+  <!-- =====================================================
        JAVASCRIPT
-       Lo dejamos dentro del HTML para mantener
-       únicamente index.html + styles.css
-  =================================================== -->
+  ====================================================== -->
 
   <script>
 
-    /* ================================================
-       INFORMACIÓN DEL HOLOGRAMA
-    ================================================= */
-
     const data = {
+
 
       core: {
 
-        tag: "0 · Núcleo central",
+        tag:
+          "0 · Núcleo epistemológico",
 
-        title: "La alquimia del saber",
+        title:
+          "La alquimia del saber",
 
-        subtitle: "Transformar la memoria en motor",
+        subtitle:
+          "Transformar la memoria en motor",
 
         sections: [
 
           [
             "Idea central",
-            "La memoria sigue teniendo un lugar en el aprendizaje, pero no como punto final. Lo importante es que aquello que el estudiante recuerda se convierta en base para comprender, relacionar, argumentar y resolver."
+            "La memoria sigue teniendo un lugar en el aprendizaje, pero no como punto final. Aquello que el estudiante recuerda puede convertirse en base para comprender, relacionar, argumentar y resolver."
           ],
 
           [
             "Lectura del holograma",
-            "El centro reúne la tesis principal. A su alrededor, los cuatro ejes muestran cómo distintos autores ayudan a explicar la didáctica de procesos en educación matemática."
+            "El núcleo reúne la tesis principal. Los cuatro ejes muestran distintas perspectivas sobre cómo se construye, media y utiliza el conocimiento matemático."
           ],
 
           [
-            "Sentido pedagógico",
-            "La enseñanza no se reduce a repetir procedimientos. También necesita abrir espacios para la comprensión, la interacción, la representación y la toma de decisiones."
+            "Sentido epistemológico",
+            "Los autores no aparecen como teorías aisladas. Sus ideas se conectan, convergen y también producen tensiones que ayudan a comprender la didáctica de procesos."
           ]
 
         ]
@@ -900,13 +1217,17 @@
       },
 
 
+
       piaget: {
 
-        tag: "1 · Fundamentos epistemológicos",
+        tag:
+          "1 · Fundamentos epistemológicos",
 
-        title: "Jean Piaget",
+        title:
+          "Jean Piaget",
 
-        subtitle: "Construcción activa del conocimiento",
+        subtitle:
+          "Construcción activa del conocimiento",
 
         photo:
           "https://commons.wikimedia.org/wiki/Special:FilePath/Jean%20Piaget.jpg",
@@ -915,17 +1236,17 @@
 
           [
             "Idea clave",
-            "El estudiante no recibe el conocimiento terminado. Lo construye y lo reorganiza mediante procesos de asimilación y acomodación."
+            "El estudiante no recibe el conocimiento terminado. Lo construye y reorganiza mediante procesos de asimilación y acomodación."
           ],
 
           [
             "Aporte al holograma",
-            "Permite entender que aprender matemática también implica explorar, comparar, equivocarse y reajustar estructuras cognitivas."
+            "Permite comprender el aprendizaje como una reorganización progresiva de las estructuras cognitivas."
           ],
 
           [
             "Aplicación didáctica",
-            "Una clase puede proponer situaciones en las que el estudiante tenga que pensar y reconstruir sus procedimientos en lugar de copiar una respuesta."
+            "La enseñanza puede proponer situaciones que obliguen al estudiante a explorar, comparar, equivocarse y reconstruir sus procedimientos."
           ]
 
         ]
@@ -933,13 +1254,17 @@
       },
 
 
+
       vygotsky: {
 
-        tag: "1 · Fundamentos epistemológicos",
+        tag:
+          "1 · Fundamentos epistemológicos",
 
-        title: "Lev Vygotsky",
+        title:
+          "Lev Vygotsky",
 
-        subtitle: "Mediación social y aprendizaje",
+        subtitle:
+          "Mediación social y aprendizaje",
 
         photo:
           "https://commons.wikimedia.org/wiki/Special:FilePath/Lev%20Vygotsky.1923.png",
@@ -948,17 +1273,17 @@
 
           [
             "Idea clave",
-            "El aprendizaje se fortalece con la interacción, el lenguaje y el acompañamiento de otros."
+            "El aprendizaje se fortalece mediante la interacción, el lenguaje y el acompañamiento de otras personas."
           ],
 
           [
             "Aporte al holograma",
-            "Ayuda a comprender la función de la mediación docente y el valor del trabajo colaborativo."
+            "Introduce la importancia de la mediación docente, la dimensión social del aprendizaje y el trabajo colaborativo."
           ],
 
           [
-            "Aplicación didáctica",
-            "Las preguntas orientadoras, la discusión entre compañeros y el andamiaje permiten que el estudiante avance más allá de lo que haría solo."
+            "Convergencia",
+            "Su idea de mediación dialoga especialmente con el concepto de andamiaje desarrollado por Bruner."
           ]
 
         ]
@@ -966,13 +1291,17 @@
       },
 
 
+
       ausubel: {
 
-        tag: "1 · Fundamentos epistemológicos",
+        tag:
+          "1 · Fundamentos epistemológicos",
 
-        title: "David Ausubel",
+        title:
+          "David Ausubel",
 
-        subtitle: "Aprendizaje significativo",
+        subtitle:
+          "Aprendizaje significativo",
 
         photo:
           "https://www.biografiasyvidas.com/biografia/a/fotos/ausubel.jpg",
@@ -981,17 +1310,17 @@
 
           [
             "Idea clave",
-            "Lo nuevo se comprende mejor cuando puede relacionarse con lo que el estudiante ya sabe."
+            "Lo nuevo se comprende mejor cuando puede relacionarse con aquello que el estudiante ya sabe."
           ],
 
           [
             "Aporte al holograma",
-            "Recuerda la importancia de activar los conocimientos previos antes de introducir una idea matemática."
+            "Destaca la importancia de los conocimientos previos como punto de anclaje para los nuevos aprendizajes."
           ],
 
           [
             "Aplicación didáctica",
-            "Antes de presentar un contenido, conviene recuperar experiencias, conceptos o ejemplos cercanos que sirvan como anclaje."
+            "Antes de introducir un concepto matemático conviene recuperar experiencias, conocimientos y ejemplos que permitan establecer relaciones significativas."
           ]
 
         ]
@@ -999,13 +1328,17 @@
       },
 
 
+
       brousseau: {
 
-        tag: "2 · Contenidos y procesos",
+        tag:
+          "2 · Contenidos y procesos",
 
-        title: "Guy Brousseau",
+        title:
+          "Guy Brousseau",
 
-        subtitle: "Situaciones didácticas",
+        subtitle:
+          "Situaciones didácticas",
 
         photo:
           "https://commons.wikimedia.org/wiki/Special:FilePath/Guy-Brousseau.jpg",
@@ -1014,17 +1347,17 @@
 
           [
             "Idea clave",
-            "Una situación bien diseñada hace necesario el uso del conocimiento matemático."
+            "Una situación didáctica bien diseñada puede hacer necesario el uso de determinado conocimiento matemático."
           ],
 
           [
             "Aporte al holograma",
-            "Muestra que enseñar no es solo explicar, sino también diseñar experiencias que provoquen pensamiento."
+            "Enseñar no consiste únicamente en explicar contenidos, sino también en diseñar situaciones que provoquen pensamiento."
           ],
 
           [
-            "Aplicación didáctica",
-            "El docente puede plantear un problema primero y permitir que el estudiante descubra qué herramientas matemáticas necesita."
+            "Convergencia",
+            "Se relaciona con Vergnaud y Schoenfeld al destacar el papel de las situaciones y los problemas en la construcción y utilización del conocimiento."
           ]
 
         ]
@@ -1032,13 +1365,17 @@
       },
 
 
+
       vergnaud: {
 
-        tag: "2 · Contenidos y procesos",
+        tag:
+          "2 · Contenidos y procesos",
 
-        title: "Gérard Vergnaud",
+        title:
+          "Gérard Vergnaud",
 
-        subtitle: "Campos conceptuales",
+        subtitle:
+          "Campos conceptuales",
 
         photo:
           "https://commons.wikimedia.org/wiki/Special:FilePath/GerardVergnaud.jpg",
@@ -1047,17 +1384,17 @@
 
           [
             "Idea clave",
-            "Un concepto se construye en diferentes tipos de situaciones, no en un único ejercicio."
+            "Un concepto se construye mediante diferentes tipos de situaciones y no a partir de un único ejercicio."
           ],
 
           [
             "Aporte al holograma",
-            "Da sentido a la diversidad de problemas y a la movilidad de un mismo contenido entre varios contextos."
+            "Permite comprender la importancia de presentar un mismo contenido en distintos contextos y situaciones."
           ],
 
           [
-            "Aplicación didáctica",
-            "La proporcionalidad, por ejemplo, puede trabajarse en porcentajes, escalas, razones, medidas y situaciones cotidianas."
+            "Convergencia",
+            "Su perspectiva se aproxima a Brousseau y Schoenfeld al considerar la resolución de situaciones como escenario fundamental del aprendizaje matemático."
           ]
 
         ]
@@ -1065,13 +1402,17 @@
       },
 
 
+
       freire: {
 
-        tag: "3 · Roles, mediaciones y uso de fuentes",
+        tag:
+          "3 · Roles, mediaciones y uso de fuentes",
 
-        title: "Paulo Freire",
+        title:
+          "Paulo Freire",
 
-        subtitle: "Diálogo y problematización",
+        subtitle:
+          "Diálogo y problematización",
 
         photo:
           "https://commons.wikimedia.org/wiki/Special:FilePath/Paulo%20Freire%201977%20close-up%20%28cropped%29.jpg",
@@ -1080,22 +1421,22 @@
 
           [
             "Idea clave",
-            "Aprender no es repetir de forma pasiva; también supone preguntar, dialogar e interpretar."
+            "Aprender no significa repetir de forma pasiva. También implica preguntar, interpretar, dialogar y problematizar."
           ],
 
           [
             "Aporte al holograma",
-            "Introduce una mirada más humana y crítica sobre la relación entre docente y estudiante."
+            "Introduce una dimensión crítica y humana en la relación entre docente, estudiante y conocimiento."
           ],
 
           [
             "Aplicación didáctica",
-            "Más allá de pedir un resultado, la clase puede invitar a justificar, explicar y discutir diferentes estrategias."
+            "La clase puede convertirse en un espacio donde los estudiantes expliquen, argumenten, contrasten estrategias y construyan sentido."
           ],
 
           [
             "Uso de fuentes",
-            "Las fuentes de información pueden trabajarse como insumos para contrastar ideas, problematizar y construir argumentos, no como materiales para copiar de manera pasiva."
+            "Las fuentes pueden utilizarse para contrastar ideas y construir argumentos, y no solamente como materiales destinados a ser copiados."
           ]
 
         ]
@@ -1103,13 +1444,17 @@
       },
 
 
+
       bruner: {
 
-        tag: "3 · Roles, mediaciones y uso de fuentes",
+        tag:
+          "3 · Roles, mediaciones y uso de fuentes",
 
-        title: "Jerome Bruner",
+        title:
+          "Jerome Bruner",
 
-        subtitle: "Representación y andamiaje",
+        subtitle:
+          "Representación y andamiaje",
 
         photo:
           "https://commons.wikimedia.org/wiki/Special:FilePath/Jerome%20Bruner%201936.png",
@@ -1123,17 +1468,17 @@
 
           [
             "Aporte al holograma",
-            "Ayuda a pensar la transición de lo concreto a lo abstracto mediante apoyos temporales."
+            "Permite pensar el tránsito desde experiencias concretas hacia formas de representación cada vez más abstractas."
           ],
 
           [
-            "Aplicación didáctica",
-            "Un concepto puede comenzar con material concreto, continuar con esquemas y terminar en formulación simbólica."
+            "Andamiaje",
+            "Los apoyos temporales permiten al estudiante realizar tareas que posteriormente podrá desarrollar con mayor autonomía."
           ],
 
           [
-            "Uso de fuentes",
-            "Los recursos, representaciones y materiales funcionan como apoyos para reorganizar el conocimiento y avanzar progresivamente hacia una mayor autonomía."
+            "Convergencia",
+            "Su concepto de andamiaje se conecta con la importancia de la mediación social planteada por Vygotsky."
           ]
 
         ]
@@ -1141,13 +1486,17 @@
       },
 
 
+
       schoenfeld: {
 
-        tag: "4 · Síntesis de procesos",
+        tag:
+          "4 · Síntesis de procesos",
 
-        title: "Alan Schoenfeld",
+        title:
+          "Alan Schoenfeld",
 
-        subtitle: "Resolución de problemas y metacognición",
+        subtitle:
+          "Resolución de problemas y metacognición",
 
         photo:
           "https://commons.wikimedia.org/wiki/Special:FilePath/Alan%20Schoenfeld%201998.jpg",
@@ -1156,7 +1505,7 @@
 
           [
             "Idea clave",
-            "Resolver no depende solo de conocer una fórmula; también requiere planificar, decidir, revisar y ajustar estrategias."
+            "Resolver un problema no depende únicamente de conocer una fórmula. También requiere planificar, decidir, revisar y ajustar estrategias."
           ],
 
           [
@@ -1165,38 +1514,47 @@
           ],
 
           [
-            "Aplicación didáctica",
-            "Después de resolver, la clase puede preguntar qué estrategia funcionó, por qué y qué se podría hacer diferente."
+            "Convergencia",
+            "Su enfoque se relaciona con Brousseau y Vergnaud porque sitúa los problemas y las situaciones como escenarios donde el conocimiento adquiere sentido."
           ]
 
         ]
 
       },
+
 
 
       tension: {
 
-        tag: "5 · Nodo de tensión",
+        tag:
+          "5 · Nodo de tensión",
 
-        title: "Contenidos ↔ procesos",
+        title:
+          "Contenidos ↔ procesos",
 
-        subtitle: "Una tensión que no exige escoger un solo lado",
+        subtitle:
+          "Una tensión epistemológica que no exige escoger un solo lado",
 
         sections: [
 
           [
-            "Lo que se observa",
-            "El problema no es enseñar contenidos, sino reducir la enseñanza únicamente a definiciones, fórmulas y repetición mecánica."
+            "Polo de contenidos",
+            "El conocimiento matemático requiere conceptos, procedimientos, propiedades y estructuras que deben ser aprendidos."
+          ],
+
+          [
+            "Polo de procesos",
+            "El aprendizaje también requiere comprender, argumentar, representar, decidir, resolver y reflexionar."
+          ],
+
+          [
+            "La tensión",
+            "El problema aparece cuando la enseñanza se reduce exclusivamente a la repetición de contenidos o, en el extremo opuesto, cuando los procesos se trabajan sin suficiente base conceptual."
           ],
 
           [
             "Articulación",
-            "Los contenidos siguen siendo necesarios, pero deben ponerse al servicio de la comprensión, la resolución, la argumentación y la comunicación."
-          ],
-
-          [
-            "Pregunta orientadora",
-            "¿El estudiante solo recuerda un procedimiento o realmente sabe cuándo, por qué y para qué usarlo?"
+            "Los contenidos y los procesos deben relacionarse: el estudiante necesita saber qué hacer, pero también cuándo hacerlo, por qué funciona y para qué utilizarlo."
           ]
 
         ]
@@ -1204,39 +1562,43 @@
       },
 
 
+
       sintesis: {
 
-        tag: "6 · Síntesis final",
+        tag:
+          "6 · Síntesis final",
 
-        title: "Articulación del holograma",
+        title:
+          "Articulación del holograma",
 
-        subtitle: "Cómo se conectan los cuatro ejes",
+        subtitle:
+          "Convergencia de los cuatro ejes",
 
         sections: [
 
           [
             "Eje 1",
-            "Piaget, Vygotsky y Ausubel permiten comprender el aprendizaje desde la construcción, la mediación y los conocimientos previos."
+            "Piaget, Vygotsky y Ausubel permiten comprender el aprendizaje desde la construcción activa, la mediación y los conocimientos previos."
           ],
 
           [
             "Eje 2",
-            "Brousseau y Vergnaud muestran la importancia de las situaciones y de la variedad de contextos para construir conceptos."
+            "Brousseau y Vergnaud muestran que los conceptos adquieren significado cuando se utilizan en situaciones diversas."
           ],
 
           [
             "Eje 3",
-            "Freire y Bruner ayudan a pensar una enseñanza más dialogante, representacional y acompañada."
+            "Freire y Bruner permiten comprender una enseñanza basada en el diálogo, la mediación, las representaciones y el acompañamiento."
           ],
 
           [
             "Eje 4",
-            "Schoenfeld recupera la resolución de problemas y la reflexión metacognitiva como cierre integrador."
+            "Schoenfeld integra el conocimiento matemático con la resolución de problemas, la estrategia y la metacognición."
           ],
 
           [
-            "Conclusión",
-            "La didáctica de procesos propone una enseñanza matemática menos memorística y más orientada a comprender, actuar y pensar."
+            "Síntesis",
+            "La didáctica de procesos propone una enseñanza donde construir, mediar, dialogar, resolver y reflexionar se articulan con el conocimiento matemático."
           ]
 
         ]
@@ -1247,55 +1609,90 @@
 
 
 
-    /* ================================================
-       DESPLEGAR / CERRAR LOS EJES
-    ================================================= */
+    /* =====================================================
+       DESPLEGAR EJES
+    ====================================================== */
 
     document
       .querySelectorAll("[data-axis]")
       .forEach(button => {
 
-        button.addEventListener("click", () => {
+        button.addEventListener(
+          "click",
+          () => {
 
-          const panelId = button.dataset.axis;
+            const group =
+              button.closest(".axis-group");
 
-          const panel =
-            document.getElementById(panelId);
-
-          const group =
-            button.closest(".axis-group");
-
-          const isOpen =
-            group.classList.contains("is-open");
+            const wasOpen =
+              group.classList.contains("is-open");
 
 
-          group.classList.toggle(
-            "is-open",
-            !isOpen
-          );
+            /* Cierra los otros ejes */
+
+            document
+              .querySelectorAll(".axis-group")
+              .forEach(otherGroup => {
+
+                otherGroup
+                  .classList
+                  .remove("is-open");
+
+                const otherButton =
+                  otherGroup.querySelector("[data-axis]");
+
+                if (otherButton) {
+
+                  otherButton.setAttribute(
+                    "aria-expanded",
+                    "false"
+                  );
+
+                  const otherArrow =
+                    otherButton.querySelector(".axis-arrow");
+
+                  if (otherArrow) {
+                    otherArrow.textContent = "+";
+                  }
+
+                }
+
+              });
 
 
-          button.setAttribute(
-            "aria-expanded",
-            String(!isOpen)
-          );
+            /* Abre el eje seleccionado */
 
+            if (!wasOpen) {
 
-          const arrow =
-            button.querySelector(".axis-arrow");
+              group
+                .classList
+                .add("is-open");
 
-          arrow.textContent =
-            isOpen ? "+" : "−";
+              button.setAttribute(
+                "aria-expanded",
+                "true"
+              );
 
-        });
+              const arrow =
+                button.querySelector(".axis-arrow");
+
+              if (arrow) {
+                arrow.textContent = "−";
+              }
+
+            }
+
+          }
+
+        );
 
       });
 
 
 
-    /* ================================================
+    /* =====================================================
        MODAL
-    ================================================= */
+    ====================================================== */
 
     const modal =
       document.getElementById("modal");
@@ -1322,9 +1719,12 @@
 
     function openModal(key) {
 
-      const item = data[key];
+      const item =
+        data[key];
 
-      if (!item) return;
+      if (!item) {
+        return;
+      }
 
 
       modalTag.textContent =
@@ -1337,7 +1737,6 @@
         item.subtitle;
 
 
-      /* FOTO */
 
       if (item.photo) {
 
@@ -1345,11 +1744,13 @@
           "block";
 
         modalPhoto.innerHTML = `
+
           <img
             src="${item.photo}"
             alt="${item.title}"
             onerror="this.parentElement.style.display='none';"
           >
+
         `;
 
       }
@@ -1365,12 +1766,12 @@
       }
 
 
-      /* CONTENIDO */
 
       modalBody.innerHTML =
         item.sections
           .map(
             ([label, text]) => `
+
               <section class="modal-section">
 
                 <span class="modal-section-label">
@@ -1382,23 +1783,25 @@
                 </p>
 
               </section>
+
             `
           )
           .join("");
 
 
-      modal.classList.add(
-        "is-visible"
-      );
+      modal
+        .classList
+        .add("is-visible");
 
       modal.setAttribute(
         "aria-hidden",
         "false"
       );
 
-      document.body.classList.add(
-        "modal-open"
-      );
+      document
+        .body
+        .classList
+        .add("modal-open");
 
     }
 
@@ -1406,24 +1809,23 @@
 
     function closeModal() {
 
-      modal.classList.remove(
-        "is-visible"
-      );
+      modal
+        .classList
+        .remove("is-visible");
 
       modal.setAttribute(
         "aria-hidden",
         "true"
       );
 
-      document.body.classList.remove(
-        "modal-open"
-      );
+      document
+        .body
+        .classList
+        .remove("modal-open");
 
     }
 
 
-
-    /* ELEMENTOS QUE ABREN MODAL */
 
     document
       .querySelectorAll("[data-key]")
@@ -1444,16 +1846,12 @@
 
 
 
-    /* BOTÓN CERRAR */
-
     modalClose.addEventListener(
       "click",
       closeModal
     );
 
 
-
-    /* CLIC FUERA DEL MODAL */
 
     modal.addEventListener(
       "click",
@@ -1467,8 +1865,6 @@
     );
 
 
-
-    /* TECLA ESCAPE */
 
     document.addEventListener(
       "keydown",
@@ -1487,7 +1883,7 @@
     );
 
   </script>
-<!-- actualización de diseño -->
+
 </body>
-  
+
 </html>
