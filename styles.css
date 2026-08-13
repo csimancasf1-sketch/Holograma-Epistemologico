@@ -1,60 +1,60 @@
 /* =========================================================
-   HOLOGRAMA EPISTEMOLÓGICO
    LA ALQUIMIA DEL SABER
+   HOLOGRAMA EPISTEMOLÓGICO INTERACTIVO
    ========================================================= */
 
 
 /* =========================================================
-   1. VARIABLES GENERALES
+   VARIABLES
    ========================================================= */
 
 :root {
 
-  --ink: #26343c;
-  --muted: #68777f;
+  --ink: #26343d;
+  --muted: #687982;
 
-  --background: #eef4f6;
+  --blue: #43a9c9;
+  --blue-soft: #e8f7fb;
 
-  --white: rgba(255, 255, 255, 0.82);
-  --white-soft: rgba(255, 255, 255, 0.58);
+  --purple: #9474d1;
+  --purple-soft: #f1ecfb;
 
-  --blue: #48a9cb;
-  --blue-light: #e7f7fb;
+  --green: #66a46e;
+  --green-soft: #edf7ef;
 
-  --purple: #9878d4;
-  --purple-light: #f1ebfb;
+  --gold: #d7a046;
+  --gold-soft: #fff6e6;
 
-  --green: #67a36f;
-  --green-light: #edf7ee;
+  --convergence: #52a6ad;
+  --tension: #c47d4f;
 
-  --gold: #d8a14b;
-  --gold-light: #fff6e6;
+  --paper: rgba(255,255,255,.88);
 
   --shadow:
-    0 18px 50px rgba(70, 80, 100, 0.12);
-
-  --shadow-hover:
-    0 22px 55px rgba(70, 80, 100, 0.19);
-
-  --radius: 24px;
+    0 20px 50px rgba(56,68,83,.14);
 
 }
 
 
 /* =========================================================
-   2. RESET
+   RESET
    ========================================================= */
 
 * {
   box-sizing: border-box;
 }
 
+
 html {
   scroll-behavior: smooth;
 }
 
+
 body {
+
   margin: 0;
+
+  min-height: 100vh;
 
   font-family:
     Inter,
@@ -66,31 +66,45 @@ body {
   color: var(--ink);
 
   background:
+
     radial-gradient(
-      circle at 50% 30%,
-      rgba(255, 255, 255, 0.95),
-      transparent 35%
+      circle at 15% 12%,
+      rgba(88, 186, 208, .13),
+      transparent 26%
+    ),
+
+    radial-gradient(
+      circle at 85% 15%,
+      rgba(154, 120, 215, .12),
+      transparent 27%
+    ),
+
+    radial-gradient(
+      circle at 15% 78%,
+      rgba(102, 164, 110, .10),
+      transparent 28%
+    ),
+
+    radial-gradient(
+      circle at 85% 78%,
+      rgba(215,160,70,.11),
+      transparent 29%
     ),
 
     linear-gradient(
       135deg,
-      #edf6f8 0%,
-      #f7f4fb 48%,
-      #f9f5ec 100%
+      #edf4f6,
+      #f7f4fa 50%,
+      #f8f5ef
     );
 
-  min-height: 100vh;
 }
 
-
-/* Evita desplazamiento cuando se abre el modal */
 
 body.modal-open {
   overflow: hidden;
 }
 
-
-/* Botones */
 
 button {
   font-family: inherit;
@@ -98,25 +112,25 @@ button {
 
 
 /* =========================================================
-   3. PÁGINA GENERAL
+   PÁGINA
    ========================================================= */
 
 .page {
 
   width: min(1600px, 100%);
 
-  margin: 0 auto;
+  margin: auto;
 
   padding:
-    34px
-    clamp(18px, 4vw, 60px)
-    28px;
+    30px
+    clamp(18px, 4vw, 55px)
+    25px;
 
 }
 
 
 /* =========================================================
-   4. ENCABEZADO
+   ENCABEZADO
    ========================================================= */
 
 .hero {
@@ -125,13 +139,13 @@ button {
 
   margin:
     0 auto
-    28px;
+    24px;
 
   display: flex;
 
-  align-items: flex-end;
-
   justify-content: space-between;
+
+  align-items: flex-end;
 
   gap: 30px;
 
@@ -139,9 +153,7 @@ button {
 
 
 .hero-text {
-
-  max-width: 850px;
-
+  max-width: 830px;
 }
 
 
@@ -151,17 +163,17 @@ button {
 
   align-items: center;
 
-  gap: 8px;
+  gap: 9px;
 
-  margin-bottom: 10px;
+  margin-bottom: 9px;
 
-  color: #548da3;
+  color: #50889c;
 
-  font-size: 11px;
+  font-size: 10px;
 
-  font-weight: 700;
+  font-weight: 800;
 
-  letter-spacing: 0.16em;
+  letter-spacing: .16em;
 
   text-transform: uppercase;
 
@@ -172,9 +184,9 @@ button {
 
   content: "";
 
-  width: 24px;
+  width: 28px;
 
-  height: 1px;
+  height: 2px;
 
   background: var(--blue);
 
@@ -191,13 +203,13 @@ button {
     serif;
 
   font-size:
-    clamp(38px, 5vw, 68px);
+    clamp(40px, 5vw, 68px);
 
-  line-height: 0.98;
+  line-height: .98;
 
   font-weight: 500;
 
-  letter-spacing: -0.035em;
+  letter-spacing: -.035em;
 
 }
 
@@ -206,9 +218,9 @@ button {
 
   margin:
     10px 0
-    6px;
+    0;
 
-  color: #65818d;
+  color: #627e89;
 
   font-family:
     Georgia,
@@ -225,24 +237,22 @@ button {
 
 .hero-description {
 
-  max-width: 760px;
+  max-width: 770px;
 
   margin:
-    14px 0
+    13px 0
     0;
 
   color: var(--muted);
 
-  font-size: 14px;
+  font-size: 13.5px;
 
-  line-height: 1.7;
+  line-height: 1.65;
 
 }
 
 
 .interaction-hint {
-
-  flex: 0 0 auto;
 
   display: flex;
 
@@ -250,29 +260,28 @@ button {
 
   gap: 9px;
 
+  flex-shrink: 0;
+
   padding:
-    11px
-    17px;
+    10px
+    15px;
 
   border:
     1px solid
-    rgba(255, 255, 255, 0.85);
+    rgba(255,255,255,.95);
 
   border-radius: 999px;
 
   background:
-    rgba(255, 255, 255, 0.68);
+    rgba(255,255,255,.77);
 
   box-shadow:
-    0 10px 30px
-    rgba(85, 88, 110, 0.09);
+    0 9px 25px
+    rgba(70,80,100,.09);
 
-  backdrop-filter:
-    blur(12px);
+  color: #687980;
 
-  color: #687880;
-
-  font-size: 12px;
+  font-size: 11px;
 
 }
 
@@ -282,40 +291,25 @@ button {
   color: var(--purple);
 
   animation:
-    hintGlow
-    2.4s
+    pulseHint
+    2.2s
     ease-in-out
     infinite;
 
 }
 
 
-@keyframes hintGlow {
-
-  0%,
-  100% {
-
-    transform:
-      scale(1);
-
-    opacity: 0.6;
-
-  }
+@keyframes pulseHint {
 
   50% {
-
-    transform:
-      scale(1.25);
-
-    opacity: 1;
-
+    transform: scale(1.35);
   }
 
 }
 
 
 /* =========================================================
-   5. TABLERO / HOLOGRAMA
+   TABLERO DEL HOLOGRAMA
    ========================================================= */
 
 .hologram {
@@ -326,71 +320,43 @@ button {
 
   max-width: 1450px;
 
-  min-height: 900px;
+  min-height: 1120px;
 
   margin:
     0 auto;
-
-  padding:
-    clamp(30px, 4vw, 60px);
-
-  display: grid;
-
-  grid-template-columns:
-    minmax(270px, 1fr)
-    minmax(300px, 390px)
-    minmax(270px, 1fr);
-
-  grid-template-areas:
-
-    "axis1 core axis2"
-
-    "axis3 core axis4"
-
-    ". integration .";
-
-  align-items: center;
-
-  column-gap:
-    clamp(30px, 5vw, 85px);
-
-  row-gap: 34px;
 
   overflow: hidden;
 
   border:
     1px solid
-    rgba(255, 255, 255, 0.75);
+    rgba(255,255,255,.92);
 
-  border-radius: 38px;
+  border-radius: 36px;
 
   background:
 
     radial-gradient(
-      circle at center,
-      rgba(255, 255, 255, 0.9) 0%,
-      rgba(255, 255, 255, 0.65) 21%,
-      rgba(255, 255, 255, 0.18) 43%,
-      transparent 64%
+      circle at 50% 38%,
+      rgba(255,255,255,.97) 0%,
+      rgba(255,255,255,.72) 17%,
+      rgba(255,255,255,.28) 39%,
+      transparent 65%
     ),
 
     linear-gradient(
       145deg,
-      rgba(255, 255, 255, 0.42),
-      rgba(255, 255, 255, 0.16)
+      rgba(255,255,255,.58),
+      rgba(255,255,255,.24)
     );
 
   box-shadow:
-    0 30px 80px
-    rgba(80, 80, 110, 0.13);
-
-  backdrop-filter:
-    blur(10px);
+    0 30px 75px
+    rgba(62,70,90,.16);
 
 }
 
 
-/* Líneas tipo cuadrícula */
+/* Cuadrícula de fondo */
 
 .hologram::before {
 
@@ -400,37 +366,30 @@ button {
 
   inset: 0;
 
-  z-index: -3;
+  z-index: -10;
 
   pointer-events: none;
 
   background:
 
     linear-gradient(
-      rgba(120, 150, 170, 0.05) 1px,
+      rgba(90,130,145,.055) 1px,
       transparent 1px
     ),
 
     linear-gradient(
       90deg,
-      rgba(120, 150, 170, 0.05) 1px,
+      rgba(90,130,145,.055) 1px,
       transparent 1px
     );
 
   background-size:
-    42px 42px;
-
-  mask-image:
-    radial-gradient(
-      circle at center,
-      black,
-      transparent 78%
-    );
+    36px 36px;
 
 }
 
 
-/* Halo central */
+/* Luz central */
 
 .hologram::after {
 
@@ -438,15 +397,44 @@ button {
 
   position: absolute;
 
-  z-index: -2;
+  left: 50%;
+
+  top: 39%;
+
+  width: 690px;
+
+  height: 690px;
+
+  transform:
+    translate(-50%, -50%);
+
+  z-index: -8;
+
+  border-radius: 50%;
+
+  background:
+
+    radial-gradient(
+      circle,
+      rgba(67,169,201,.12),
+      rgba(148,116,209,.06) 35%,
+      transparent 68%
+    );
+
+}
+
+
+/* =========================================================
+   CAPAS DE PROFUNDIDAD
+   ========================================================= */
+
+.depth-layer {
+
+  position: absolute;
 
   left: 50%;
 
-  top: 43%;
-
-  width: 650px;
-
-  height: 650px;
+  top: 39%;
 
   transform:
     translate(-50%, -50%);
@@ -455,134 +443,536 @@ button {
 
   pointer-events: none;
 
+  z-index: -5;
+
+}
+
+
+.depth-layer-1 {
+
+  width: 425px;
+
+  height: 425px;
+
+  border:
+    1.4px solid
+    rgba(67,169,201,.27);
+
+}
+
+
+.depth-layer-2 {
+
+  width: 620px;
+
+  height: 620px;
+
+  border:
+    1.4px dashed
+    rgba(148,116,209,.23);
+
+}
+
+
+.depth-layer-3 {
+
+  width: 860px;
+
+  height: 860px;
+
+  border:
+    1px solid
+    rgba(93,139,130,.14);
+
+}
+
+
+/* =========================================================
+   CONEXIONES
+   ========================================================= */
+
+.knowledge-links {
+
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  pointer-events: none;
+
+  z-index: 1;
+
+}
+
+
+.link {
+
+  fill: none;
+
+  vector-effect:
+    non-scaling-stroke;
+
+  stroke-linecap:
+    round;
+
+  stroke-linejoin:
+    round;
+
+}
+
+
+.link-main {
+
+  stroke-width: 2;
+
+  opacity: .82;
+
+}
+
+
+.link-blue {
+  stroke: var(--blue);
+}
+
+
+.link-purple {
+  stroke: var(--purple);
+}
+
+
+.link-green {
+  stroke: var(--green);
+}
+
+
+.link-gold {
+  stroke: var(--gold);
+}
+
+
+.link-convergence {
+
+  stroke: var(--convergence);
+
+  stroke-width: 2;
+
+  opacity: .72;
+
+}
+
+
+.link-secondary {
+
+  stroke:
+    rgba(82,166,173,.65);
+
+  stroke-width: 1.7;
+
+}
+
+
+.link-tension {
+
+  stroke: var(--tension);
+
+  stroke-width: 2;
+
+  stroke-dasharray:
+    8 7;
+
+  opacity: .85;
+
+  animation:
+    tensionFlow
+    8s
+    linear
+    infinite;
+
+}
+
+
+.link-final {
+
+  stroke: var(--convergence);
+
+  stroke-width: 2.2;
+
+}
+
+
+@keyframes tensionFlow {
+
+  to {
+    stroke-dashoffset: -90;
+  }
+
+}
+
+
+/* =========================================================
+   NÚCLEO
+   ========================================================= */
+
+.core {
+
+  position: absolute;
+
+  z-index: 12;
+
+  left: 50%;
+
+  top: 405px;
+
+  transform:
+    translate(-50%, -50%);
+
+  width: 295px;
+
+  height: 295px;
+
+  padding: 40px;
+
+  cursor: pointer;
+
+  border:
+    1px solid
+    rgba(255,255,255,.98);
+
+  border-radius: 50%;
+
+  color: var(--ink);
+
   background:
 
     radial-gradient(
-      circle,
-      rgba(67, 169, 203, 0.08),
-      rgba(152, 120, 212, 0.05) 40%,
-      transparent 67%
+      circle at 32% 25%,
+      #ffffff,
+      rgba(255,255,255,.95) 34%,
+      rgba(236,248,251,.88) 68%,
+      rgba(238,235,249,.76)
     );
 
-}
+  box-shadow:
 
+    0 27px 65px
+    rgba(60,78,100,.23),
 
-/* =========================================================
-   6. UBICACIÓN DE LOS EJES
-   ========================================================= */
+    0 0 85px
+    rgba(67,169,201,.17),
 
-.axis-1 {
+    inset
+    0 0 0
+    10px
+    rgba(255,255,255,.38);
 
-  grid-area: axis1;
-
-  --axis-color: var(--blue);
-
-  --axis-light: var(--blue-light);
-
-}
-
-
-.axis-2 {
-
-  grid-area: axis2;
-
-  --axis-color: var(--purple);
-
-  --axis-light: var(--purple-light);
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease;
 
 }
 
 
-.axis-3 {
+.core:hover {
 
-  grid-area: axis3;
+  transform:
+    translate(-50%, -50%)
+    scale(1.035);
 
-  --axis-color: var(--green);
+  box-shadow:
 
-  --axis-light: var(--green-light);
+    0 31px 75px
+    rgba(60,78,100,.27),
+
+    0 0 110px
+    rgba(67,169,201,.25),
+
+    inset
+    0 0 0
+    10px
+    rgba(255,255,255,.48);
 
 }
 
 
-.axis-4 {
-
-  grid-area: axis4;
-
-  --axis-color: var(--gold);
-
-  --axis-light: var(--gold-light);
-
-}
-
-
-/* =========================================================
-   7. GRUPO DE CADA EJE
-   ========================================================= */
-
-.axis-group {
+.core-content {
 
   position: relative;
 
   z-index: 5;
 
-  width: 100%;
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  height: 100%;
+
+  text-align: center;
 
 }
 
 
-/* Línea sutil hacia el núcleo */
+.core-content small {
 
-.axis-group::after {
+  color: #56879a;
 
-  content: "";
+  font-size: 9px;
 
-  position: absolute;
+  font-weight: 800;
 
-  top: 45px;
+  letter-spacing: .13em;
 
-  width:
-    clamp(25px, 5vw, 70px);
+  text-transform: uppercase;
 
-  height: 1px;
+}
 
-  opacity: 0.4;
 
-  pointer-events: none;
+.core-content strong {
+
+  margin-top: 10px;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 34px;
+
+  line-height: 1;
+
+  font-weight: 500;
+
+  letter-spacing: -.035em;
+
+}
+
+
+.core-divider {
+
+  width: 48px;
+
+  height: 2px;
+
+  margin:
+    14px auto
+    12px;
 
   background:
 
     linear-gradient(
       90deg,
       transparent,
-      var(--axis-color)
+      var(--blue),
+      transparent
     );
 
 }
 
 
-.axis-1::after,
-.axis-3::after {
+.core-content p {
 
-  right:
-    clamp(-70px, -5vw, -25px);
+  margin: 0;
+
+  color: #5e7179;
+
+  font-size: 10.8px;
+
+  line-height: 1.5;
 
 }
 
 
-.axis-2::after,
-.axis-4::after {
+.core-action {
 
-  left:
-    clamp(-70px, -5vw, -25px);
+  margin-top: 13px;
 
-  transform:
-    rotate(180deg);
+  padding:
+    6px 11px;
+
+  border:
+    1px solid
+    rgba(67,169,201,.17);
+
+  border-radius: 999px;
+
+  color: #50879a;
+
+  background:
+    rgba(67,169,201,.09);
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+}
+
+
+/* Órbitas */
+
+.core-orbit {
+
+  position: absolute;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+}
+
+
+.orbit-one {
+
+  inset: -18px;
+
+  border:
+    1.4px solid
+    rgba(67,169,201,.4);
+
+  animation:
+    orbitPulse
+    4.5s
+    ease-in-out
+    infinite;
+
+}
+
+
+.orbit-two {
+
+  inset: -39px;
+
+  border:
+    1.3px dashed
+    rgba(148,116,209,.34);
+
+  animation:
+    orbitRotation
+    22s
+    linear
+    infinite;
+
+}
+
+
+.orbit-three {
+
+  inset: -65px;
+
+  border:
+    1px solid
+    rgba(102,164,110,.21);
+
+  animation:
+    orbitRotationReverse
+    32s
+    linear
+    infinite;
+
+}
+
+
+@keyframes orbitPulse {
+
+  50% {
+    transform: scale(1.025);
+  }
+
+}
+
+
+@keyframes orbitRotation {
+
+  to {
+    transform: rotate(360deg);
+  }
+
+}
+
+
+@keyframes orbitRotationReverse {
+
+  to {
+    transform: rotate(-360deg);
+  }
 
 }
 
 
 /* =========================================================
-   8. TARJETAS PRINCIPALES DE LOS EJES
+   EJES
+   ========================================================= */
+
+.axis-group {
+
+  position: absolute;
+
+  z-index: 8;
+
+  width: 355px;
+
+  display: flex;
+
+  flex-direction: column;
+
+}
+
+
+.axis-1 {
+
+  --axis-color: var(--blue);
+  --axis-soft: var(--blue-soft);
+
+  left: 4.5%;
+  top: 82px;
+
+}
+
+
+.axis-2 {
+
+  --axis-color: var(--purple);
+  --axis-soft: var(--purple-soft);
+
+  right: 4.5%;
+  top: 82px;
+
+}
+
+
+.axis-3 {
+
+  --axis-color: var(--green);
+  --axis-soft: var(--green-soft);
+
+  left: 4.5%;
+  top: 640px;
+
+  flex-direction: column-reverse;
+
+}
+
+
+.axis-4 {
+
+  --axis-color: var(--gold);
+  --axis-soft: var(--gold-soft);
+
+  right: 4.5%;
+  top: 640px;
+
+  flex-direction: column-reverse;
+
+}
+
+
+/* =========================================================
+   TARJETA DEL EJE
    ========================================================= */
 
 .axis-card {
@@ -591,83 +981,49 @@ button {
 
   width: 100%;
 
-  min-height: 86px;
+  min-height: 88px;
 
   display: grid;
 
   grid-template-columns:
-    44px
+    48px
     1fr
     28px;
 
+  gap: 12px;
+
   align-items: center;
 
-  gap: 13px;
-
   padding:
-    14px
-    16px;
+    13px
+    15px;
+
+  cursor: pointer;
 
   color: var(--ink);
 
   text-align: left;
 
-  cursor: pointer;
-
   border:
-    1px solid
-    rgba(255, 255, 255, 0.9);
+    1.4px solid
+    rgba(255,255,255,.96);
 
-  border-radius: 21px;
+  border-left:
+    4px solid
+    var(--axis-color);
+
+  border-radius: 18px;
 
   background:
-
-    linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.88),
-      rgba(255, 255, 255, 0.61)
-    );
+    rgba(255,255,255,.91);
 
   box-shadow:
-    0 13px 35px
-    rgba(70, 80, 100, 0.1);
-
-  backdrop-filter:
-    blur(14px);
+    0 13px 33px
+    rgba(64,75,95,.14);
 
   transition:
-    transform 0.28s ease,
-    box-shadow 0.28s ease,
-    border-color 0.28s ease;
-
-}
-
-
-.axis-card::before {
-
-  content: "";
-
-  position: absolute;
-
-  inset: 0;
-
-  border-radius: inherit;
-
-  pointer-events: none;
-
-  opacity: 0;
-
-  background:
-
-    linear-gradient(
-      110deg,
-      transparent,
-      rgba(255, 255, 255, 0.75),
-      transparent
-    );
-
-  transition:
-    opacity 0.3s ease;
+    transform .25s ease,
+    box-shadow .25s ease;
 
 }
 
@@ -677,61 +1033,36 @@ button {
   transform:
     translateY(-4px);
 
-  border-color:
-    color-mix(
-      in srgb,
-      var(--axis-color) 30%,
-      white
-    );
-
   box-shadow:
-    0 18px 40px
-    rgba(70, 80, 100, 0.16);
-
-}
-
-
-.axis-card:hover::before {
-
-  opacity: 0.6;
+    0 18px 42px
+    rgba(64,75,95,.20);
 
 }
 
 
 .axis-number {
 
-  width: 42px;
+  width: 43px;
 
-  height: 42px;
+  height: 43px;
 
   display: grid;
 
   place-items: center;
 
-  flex-shrink: 0;
-
   border:
-    1px solid
+    1.5px solid
     var(--axis-color);
 
-  border-radius: 14px;
+  border-radius: 13px;
 
-  background:
-    var(--axis-light);
+  color: var(--axis-color);
 
-  color:
-    var(--axis-color);
+  background: var(--axis-soft);
 
-  font-size: 16px;
+  font-size: 15px;
 
-  font-weight: 800;
-
-}
-
-
-.axis-content {
-
-  display: block;
+  font-weight: 900;
 
 }
 
@@ -740,12 +1071,11 @@ button {
 
   display: block;
 
-  color:
-    var(--axis-color);
+  color: var(--axis-color);
 
-  font-size: 13.5px;
+  font-size: 13px;
 
-  line-height: 1.28;
+  line-height: 1.25;
 
 }
 
@@ -754,11 +1084,11 @@ button {
 
   display: block;
 
-  margin-top: 6px;
+  margin-top: 5px;
 
   color: var(--muted);
 
-  font-size: 10.5px;
+  font-size: 9.7px;
 
   line-height: 1.4;
 
@@ -775,73 +1105,49 @@ button {
 
   place-items: center;
 
-  justify-self: end;
+  border:
+    1px solid
+    rgba(0,0,0,.05);
 
   border-radius: 50%;
 
-  background:
-    var(--axis-light);
+  color: var(--axis-color);
 
-  color:
-    var(--axis-color);
+  background: var(--axis-soft);
 
-  font-size: 19px;
-
-  font-weight: 300;
-
-  transition:
-    transform 0.3s ease;
-
-}
-
-
-.axis-group.is-open
-.axis-arrow {
-
-  transform:
-    rotate(180deg);
+  font-size: 17px;
 
 }
 
 
 /* =========================================================
-   9. PANEL DESPLEGABLE DE AUTORES
+   AUTORES
    ========================================================= */
 
 .authors-panel {
 
-  max-height: 0;
+  position: relative;
 
-  margin-top: 0;
+  max-height: 0;
 
   overflow: hidden;
 
   opacity: 0;
 
-  transform:
-    translateY(-10px);
+  margin-top: 0;
 
   transition:
 
     max-height
-    0.55s
-    cubic-bezier(
-      0.22,
-      1,
-      0.36,
-      1
-    ),
+    .5s
+    cubic-bezier(.22,1,.36,1),
 
     opacity
-    0.32s
+    .3s
     ease,
 
-    transform
-    0.4s
-    ease,
-
-    margin-top
-    0.3s
+    margin
+    .3s
     ease;
 
 }
@@ -850,82 +1156,128 @@ button {
 .axis-group.is-open
 .authors-panel {
 
-  max-height: 600px;
-
-  margin-top: 13px;
+  max-height: 360px;
 
   opacity: 1;
 
-  transform:
-    translateY(0);
+  margin-top: 12px;
 
 }
 
 
-/* =========================================================
-   10. TARJETAS DE AUTORES
-   ========================================================= */
+.axis-3.is-open
+.authors-panel,
+
+.axis-4.is-open
+.authors-panel {
+
+  margin-top: 0;
+
+  margin-bottom: 12px;
+
+}
+
+
+/* Línea del eje hacia los autores */
+
+.authors-panel::before {
+
+  content: "";
+
+  position: absolute;
+
+  left: 29px;
+
+  top: 0;
+
+  bottom: 10px;
+
+  width: 2px;
+
+  background:
+
+    linear-gradient(
+      var(--axis-color),
+      rgba(255,255,255,0)
+    );
+
+  opacity: .62;
+
+}
+
 
 .author-card {
 
   position: relative;
 
-  width: calc(100% - 12px);
+  width: calc(100% - 18px);
 
   margin:
-    8px auto
-    0;
+    8px 0
+    0
+    auto;
 
   display: grid;
 
   grid-template-columns:
-    60px
+    55px
     1fr
     20px;
 
   align-items: center;
 
-  gap: 11px;
+  gap: 10px;
 
   padding:
-    8px
-    10px;
+    7px
+    9px;
 
   cursor: pointer;
 
   text-align: left;
 
-  border:
-    1px solid
-    rgba(255, 255, 255, 0.86);
-
-  border-radius: 18px;
-
   color: var(--ink);
 
+  border:
+    1px solid
+    rgba(255,255,255,.96);
+
+  border-radius: 15px;
+
   background:
-    rgba(255, 255, 255, 0.67);
+    rgba(255,255,255,.91);
 
   box-shadow:
-    0 10px 26px
-    rgba(70, 80, 100, 0.08);
-
-  backdrop-filter:
-    blur(12px);
+    0 8px 20px
+    rgba(65,75,95,.11);
 
   transition:
+    transform .22s ease,
+    box-shadow .22s ease;
 
-    transform
-    0.25s
-    ease,
+}
 
-    box-shadow
-    0.25s
-    ease,
 
-    background
-    0.25s
-    ease;
+/* Ramita visual */
+
+.author-card::before {
+
+  content: "";
+
+  position: absolute;
+
+  left: -17px;
+
+  top: 50%;
+
+  width: 17px;
+
+  height: 2px;
+
+  background:
+    var(--axis-color);
+
+  opacity: .55;
 
 }
 
@@ -933,31 +1285,28 @@ button {
 .author-card:hover {
 
   transform:
-    translateX(6px);
-
-  background:
-    rgba(255, 255, 255, 0.94);
+    translateX(5px);
 
   box-shadow:
-    0 15px 34px
-    rgba(70, 80, 100, 0.14);
+    0 13px 27px
+    rgba(65,75,95,.17);
 
 }
 
 
 .author-photo {
 
-  width: 58px;
+  width: 53px;
 
-  height: 58px;
+  height: 53px;
 
-  padding: 3px;
-
-  overflow: hidden;
+  padding: 2px;
 
   display: grid;
 
   place-items: center;
+
+  overflow: hidden;
 
   border-radius: 50%;
 
@@ -967,38 +1316,22 @@ button {
 
 
 .axis-blue {
-
-  border:
-    2px solid
-    var(--blue);
-
+  border: 2px solid var(--blue);
 }
 
 
 .axis-purple {
-
-  border:
-    2px solid
-    var(--purple);
-
+  border: 2px solid var(--purple);
 }
 
 
 .axis-green {
-
-  border:
-    2px solid
-    var(--green);
-
+  border: 2px solid var(--green);
 }
 
 
 .axis-gold {
-
-  border:
-    2px solid
-    var(--gold);
-
+  border: 2px solid var(--gold);
 }
 
 
@@ -1031,22 +1364,11 @@ button {
 
   border-radius: 50%;
 
-  background: #eff1f1;
+  background: #eef2f3;
 
-  color: #68777f;
+  color: #61717a;
 
-  font-family:
-    Georgia,
-    serif;
-
-  font-size: 17px;
-
-}
-
-
-.author-info {
-
-  min-width: 0;
+  font-family: Georgia, serif;
 
 }
 
@@ -1055,9 +1377,7 @@ button {
 
   display: block;
 
-  font-size: 12.5px;
-
-  line-height: 1.25;
+  font-size: 11.8px;
 
 }
 
@@ -1066,11 +1386,11 @@ button {
 
   display: block;
 
-  margin-top: 4px;
+  margin-top: 3px;
 
   color: var(--muted);
 
-  font-size: 10px;
+  font-size: 9.4px;
 
   line-height: 1.35;
 
@@ -1079,393 +1399,143 @@ button {
 
 .author-arrow {
 
-  color:
-    var(--axis-color);
+  color: var(--axis-color);
 
-  font-size: 22px;
-
-  opacity: 0.55;
-
-  transition:
-    transform 0.2s ease,
-    opacity 0.2s ease;
-
-}
-
-
-.author-card:hover
-.author-arrow {
-
-  opacity: 1;
-
-  transform:
-    translateX(3px);
+  font-size: 20px;
 
 }
 
 
 /* =========================================================
-   11. NÚCLEO CENTRAL
+   NODOS DE CONVERGENCIA
    ========================================================= */
 
-.core {
+.relation-node {
 
-  grid-area: core;
-
-  position: relative;
+  position: absolute;
 
   z-index: 10;
 
-  align-self: center;
+}
 
-  justify-self: center;
 
-  width:
-    clamp(285px, 27vw, 355px);
+.convergence-node {
 
-  aspect-ratio: 1;
+  width: 195px;
 
-  padding: 42px;
-
-  cursor: pointer;
-
-  overflow: visible;
+  padding:
+    11px
+    13px;
 
   border:
-    1px solid
-    rgba(255, 255, 255, 0.95);
+    1.5px solid
+    rgba(82,166,173,.38);
 
-  border-radius: 50%;
-
-  color: var(--ink);
+  border-radius: 18px;
 
   background:
-
-    radial-gradient(
-      circle at 32% 24%,
-      rgba(255, 255, 255, 1),
-      rgba(255, 255, 255, 0.92) 34%,
-      rgba(243, 250, 252, 0.74) 67%,
-      rgba(242, 238, 250, 0.55) 100%
-    );
+    rgba(241,252,252,.95);
 
   box-shadow:
 
-    0 30px 70px
-    rgba(82, 93, 120, 0.19),
+    0 12px 28px
+    rgba(60,105,110,.14),
 
-    0 0 80px
-    rgba(72, 169, 203, 0.12),
-
-    inset
-    0 0 0
-    11px
-    rgba(255, 255, 255, 0.34);
-
-  backdrop-filter:
-    blur(16px);
-
-  transition:
-
-    transform
-    0.38s
-    ease,
-
-    box-shadow
-    0.38s
-    ease;
-
-}
-
-
-.core:hover {
-
-  transform:
-    scale(1.025);
-
-  box-shadow:
-
-    0 34px 80px
-    rgba(82, 93, 120, 0.22),
-
-    0 0 105px
-    rgba(72, 169, 203, 0.19),
-
-    inset
-    0 0 0
-    11px
-    rgba(255, 255, 255, 0.42);
-
-}
-
-
-/* Contenido del centro */
-
-.core-content {
-
-  position: relative;
-
-  z-index: 5;
-
-  display: flex;
-
-  height: 100%;
-
-  align-items: center;
-
-  justify-content: center;
-
-  flex-direction: column;
+    0 0 25px
+    rgba(82,166,173,.08);
 
   text-align: center;
 
 }
 
 
-.core-content small {
+.convergence-1 {
 
-  color: #668b9a;
+  left: 34.5%;
 
-  font-size: 9.5px;
+  top: 525px;
 
-  font-weight: 700;
+  transform:
+    translateX(-50%);
 
-  letter-spacing: 0.14em;
+}
+
+
+.convergence-2 {
+
+  right: 34.5%;
+
+  top: 525px;
+
+  transform:
+    translateX(50%);
+
+}
+
+
+.relation-type {
+
+  display: block;
+
+  color: #568e93;
+
+  font-size: 8px;
+
+  font-weight: 900;
+
+  letter-spacing: .13em;
 
   text-transform: uppercase;
 
 }
 
 
-.core-content strong {
-
-  margin-top: 11px;
-
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
-
-  font-size:
-    clamp(29px, 3vw, 39px);
-
-  line-height: 1.02;
-
-  font-weight: 500;
-
-  letter-spacing: -0.035em;
-
-}
-
-
-.core-divider {
+.convergence-node strong {
 
   display: block;
 
-  width: 42px;
+  margin-top: 5px;
 
-  height: 1px;
+  color: #397d83;
 
-  margin:
-    16px auto
-    14px;
-
-  background:
-
-    linear-gradient(
-      90deg,
-      transparent,
-      var(--blue),
-      transparent
-    );
+  font-size: 10.5px;
 
 }
 
 
-.core-content p {
+.convergence-node small {
 
-  max-width: 245px;
+  display: block;
 
-  margin: 0;
+  margin-top: 4px;
 
-  color: var(--muted);
+  color: #667a80;
 
-  font-size: 11px;
-
-  line-height: 1.55;
-
-}
-
-
-.core-action {
-
-  display: inline-flex;
-
-  margin-top: 16px;
-
-  padding:
-    6px
-    12px;
-
-  border-radius: 999px;
-
-  background:
-    rgba(72, 169, 203, 0.1);
-
-  color: #55879a;
-
-  font-size: 9.5px;
-
-  font-weight: 700;
+  font-size: 8.7px;
 
 }
 
 
 /* =========================================================
-   12. ÓRBITAS DEL NÚCLEO
+   NODO DE TENSIÓN
    ========================================================= */
 
-.core-orbit {
+.tension-node {
 
-  position: absolute;
+  left: 50%;
 
-  border-radius: 50%;
+  top: 790px;
 
-  pointer-events: none;
+  transform:
+    translateX(-50%);
 
-}
-
-
-.orbit-one {
-
-  inset: -17px;
-
-  border:
-    1px solid
-    rgba(72, 169, 203, 0.3);
-
-  animation:
-    orbitPulse
-    5s
-    ease-in-out
-    infinite;
-
-}
-
-
-.orbit-two {
-
-  inset: -37px;
-
-  border:
-    1px dashed
-    rgba(152, 120, 212, 0.25);
-
-  animation:
-    orbitRotate
-    25s
-    linear
-    infinite;
-
-}
-
-
-.orbit-three {
-
-  inset: -61px;
-
-  border:
-
-    1px solid
-    rgba(103, 163, 111, 0.12);
-
-  animation:
-
-    orbitRotateReverse
-    35s
-    linear
-    infinite;
-
-}
-
-
-@keyframes orbitPulse {
-
-  0%,
-  100% {
-
-    transform:
-      scale(0.98);
-
-    opacity: 0.65;
-
-  }
-
-  50% {
-
-    transform:
-      scale(1.025);
-
-    opacity: 1;
-
-  }
-
-}
-
-
-@keyframes orbitRotate {
-
-  to {
-
-    transform:
-      rotate(360deg);
-
-  }
-
-}
-
-
-@keyframes orbitRotateReverse {
-
-  to {
-
-    transform:
-      rotate(-360deg);
-
-  }
-
-}
-
-
-/* =========================================================
-   13. INTEGRACIÓN
-   NODO DE TENSIÓN + SÍNTESIS FINAL
-   ========================================================= */
-
-.integration {
-
-  grid-area: integration;
-
-  z-index: 8;
-
-  width:
-    min(100%, 390px);
-
-  justify-self: center;
-
-}
-
-
-.integration-card {
-
-  width: 100%;
+  width: 390px;
 
   display: grid;
 
   grid-template-columns:
-    45px
-    1fr
-    22px;
+    48px
+    1fr;
 
   align-items: center;
 
@@ -1479,37 +1549,54 @@ button {
 
   text-align: left;
 
-  border-radius: 20px;
+  border:
+    1.5px dashed
+    rgba(196,125,79,.68);
 
-  transition:
+  border-radius: 18px;
 
-    transform
-    0.28s
-    ease,
+  color: var(--ink);
 
-    box-shadow
-    0.28s
-    ease;
-
-}
-
-
-.integration-card:hover {
-
-  transform:
-    translateY(-3px);
+  background:
+    rgba(255,247,239,.96);
 
   box-shadow:
-    var(--shadow-hover);
+
+    0 17px 38px
+    rgba(140,91,58,.16),
+
+    0 0 35px
+    rgba(196,125,79,.09);
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease;
 
 }
 
 
-.integration-icon {
+.tension-node:hover {
 
-  width: 43px;
+  transform:
+    translateX(-50%)
+    translateY(-4px);
 
-  height: 43px;
+  box-shadow:
+
+    0 21px 45px
+    rgba(140,91,58,.21),
+
+    0 0 44px
+    rgba(196,125,79,.13);
+
+}
+
+
+.relation-symbol {
+
+  width: 45px;
+
+  height: 45px;
 
   display: grid;
 
@@ -1517,154 +1604,284 @@ button {
 
   border-radius: 50%;
 
-  font-size: 20px;
+  color: var(--tension);
+
+  background:
+    rgba(196,125,79,.12);
+
+  font-size: 23px;
+
+  font-weight: 800;
 
 }
 
 
-.integration-card strong {
+.tension-node
+.relation-type {
+
+  color: #a5653e;
+
+}
+
+
+.tension-node strong {
 
   display: block;
 
-  font-size: 12.5px;
+  margin-top: 3px;
+
+  color: #a5653e;
+
+  font-size: 13px;
 
 }
 
 
-.integration-card small {
+.tension-node small {
 
   display: block;
 
-  margin-top: 2px;
+  margin-top: 4px;
 
-  font-size: 10.5px;
+  color: #6e7778;
 
-  font-weight: 700;
-
-}
-
-
-.integration-card p {
-
-  margin:
-    6px 0
-    0;
-
-  color: var(--muted);
-
-  font-size: 9.9px;
+  font-size: 9.6px;
 
   line-height: 1.4;
 
 }
 
 
-.integration-arrow {
+/* =========================================================
+   SÍNTESIS FINAL
+   ========================================================= */
 
-  font-size: 23px;
+.final-node {
 
-  opacity: 0.55;
+  position: absolute;
 
-}
+  z-index: 11;
 
+  left: 50%;
 
-.tension-card {
+  top: 965px;
 
-  border:
-    1px solid
-    rgba(216, 161, 75, 0.34);
+  transform:
+    translateX(-50%);
 
-  background:
+  width: 440px;
 
-    linear-gradient(
-      135deg,
-      rgba(255, 250, 239, 0.92),
-      rgba(255, 245, 224, 0.7)
-    );
+  display: grid;
 
-  box-shadow:
-    0 13px 34px
-    rgba(180, 140, 70, 0.11);
+  grid-template-columns:
+    50px
+    1fr;
 
-}
+  align-items: center;
 
+  gap: 13px;
 
-.tension-card
-.integration-icon {
+  padding:
+    14px
+    17px;
 
-  color: #b47c25;
+  cursor: pointer;
 
-  background:
-    rgba(216, 161, 75, 0.14);
-
-}
-
-
-.tension-card strong,
-.tension-card small {
-
-  color: #aa7525;
-
-}
-
-
-.synthesis-card {
+  text-align: left;
 
   border:
-    1px solid
-    rgba(72, 169, 203, 0.28);
+    1.5px solid
+    rgba(67,169,201,.36);
+
+  border-radius: 20px;
+
+  color: var(--ink);
 
   background:
-
-    linear-gradient(
-      135deg,
-      rgba(237, 249, 252, 0.94),
-      rgba(244, 249, 253, 0.74)
-    );
+    rgba(238,249,252,.97);
 
   box-shadow:
-    0 13px 34px
-    rgba(72, 140, 170, 0.11);
+
+    0 17px 38px
+    rgba(60,120,140,.15),
+
+    0 0 35px
+    rgba(67,169,201,.1);
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease;
 
 }
 
 
-.synthesis-card
-.integration-icon {
+.final-node:hover {
 
-  color: #4e94ad;
-
-  background:
-    rgba(72, 169, 203, 0.12);
+  transform:
+    translateX(-50%)
+    translateY(-4px);
 
 }
 
 
-.synthesis-card strong,
-.synthesis-card small {
+.final-icon {
 
-  color: #4a879f;
+  width: 47px;
 
-}
-
-
-.integration-connector {
-
-  height: 27px;
+  height: 47px;
 
   display: grid;
 
   place-items: center;
 
-  color: #a6afb3;
+  border-radius: 50%;
 
-  font-size: 15px;
+  color: var(--blue);
+
+  background:
+    rgba(67,169,201,.12);
+
+  font-size: 21px;
+
+}
+
+
+.final-node small {
+
+  display: block;
+
+  color: #54869a;
+
+  font-size: 8px;
+
+  font-weight: 900;
+
+  letter-spacing: .13em;
+
+  text-transform: uppercase;
+
+}
+
+
+.final-node strong {
+
+  display: block;
+
+  margin-top: 4px;
+
+  color: #417e94;
+
+  font-size: 13px;
+
+}
+
+
+.final-node p {
+
+  margin:
+    5px 0
+    0;
+
+  color: #66767d;
+
+  font-size: 9.6px;
+
+  line-height: 1.4;
 
 }
 
 
 /* =========================================================
-   14. RUTA CONCEPTUAL
+   LEYENDA
+   ========================================================= */
+
+.network-legend {
+
+  position: absolute;
+
+  z-index: 15;
+
+  left: 22px;
+
+  bottom: 18px;
+
+  display: flex;
+
+  gap: 17px;
+
+  align-items: center;
+
+  padding:
+    8px
+    12px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.95);
+
+  border-radius: 999px;
+
+  background:
+    rgba(255,255,255,.78);
+
+  box-shadow:
+    0 7px 20px
+    rgba(65,75,95,.08);
+
+}
+
+
+.legend-item {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  color: #718086;
+
+  font-size: 8.5px;
+
+}
+
+
+.legend-line {
+
+  display: inline-block;
+
+  width: 25px;
+
+  height: 0;
+
+  border-top:
+    2px solid
+    var(--blue);
+
+}
+
+
+.legend-line.convergence {
+
+  border-color:
+    var(--convergence);
+
+}
+
+
+.legend-line.tension {
+
+  border-color:
+    var(--tension);
+
+  border-top-style:
+    dashed;
+
+}
+
+
+/* =========================================================
+   RUTA CONCEPTUAL
    ========================================================= */
 
 .concept-route {
@@ -1674,7 +1891,7 @@ button {
   max-width: 100%;
 
   margin:
-    16px auto
+    15px auto
     0;
 
   display: flex;
@@ -1683,18 +1900,16 @@ button {
 
   justify-content: center;
 
-  gap: 7px;
-
-  color: #7c888e;
+  gap: 6px;
 
 }
 
 
 .concept-route span {
 
-  width: 27px;
+  width: 26px;
 
-  height: 27px;
+  height: 26px;
 
   display: grid;
 
@@ -1702,60 +1917,54 @@ button {
 
   border:
     1px solid
-    rgba(120, 130, 140, 0.16);
+    rgba(100,125,135,.17);
 
   border-radius: 50%;
 
   background:
-    rgba(255, 255, 255, 0.7);
+    rgba(255,255,255,.76);
 
-  box-shadow:
-    0 5px 15px
-    rgba(70, 80, 100, 0.06);
+  color: #6f7e84;
 
-  font-size: 9.5px;
+  font-size: 9px;
 
-  font-weight: 700;
+  font-weight: 800;
 
 }
 
 
 .concept-route i {
 
-  color: #b3aaa4;
+  color: #aaa9a5;
 
   font-style: normal;
 
-  font-size: 11px;
+  font-size: 10px;
 
 }
 
 
 /* =========================================================
-   15. FOOTER
+   FOOTER
    ========================================================= */
 
 .footer {
 
-  max-width: 1450px;
-
   margin:
-    12px auto
+    10px auto
     0;
 
   text-align: center;
 
-  color: #76838a;
+  color: #74838a;
 
-  font-size: 10px;
-
-  letter-spacing: 0.03em;
+  font-size: 9.5px;
 
 }
 
 
 /* =========================================================
-   16. MODAL
+   MODAL
    ========================================================= */
 
 .modal {
@@ -1779,14 +1988,14 @@ button {
   opacity: 0;
 
   background:
-    rgba(49, 55, 70, 0.38);
+    rgba(43,51,65,.43);
 
   backdrop-filter:
     blur(8px);
 
   transition:
-    opacity 0.3s ease,
-    visibility 0.3s ease;
+    opacity .3s ease,
+    visibility .3s ease;
 
 }
 
@@ -1812,41 +2021,31 @@ button {
   overflow-y: auto;
 
   padding:
-    27px
-    30px
-    30px;
+    26px
+    28px
+    28px;
 
   transform:
     translateY(25px)
-    scale(0.97);
+    scale(.97);
 
   border:
     1px solid
-    rgba(255, 255, 255, 0.92);
+    rgba(255,255,255,.96);
 
-  border-radius: 28px;
+  border-radius: 26px;
 
   background:
-
-    linear-gradient(
-      145deg,
-      rgba(255, 255, 255, 0.97),
-      rgba(250, 249, 248, 0.96)
-    );
+    rgba(255,255,255,.97);
 
   box-shadow:
-
-    0 40px 110px
-    rgba(40, 42, 58, 0.3);
+    0 38px 105px
+    rgba(35,42,55,.33);
 
   transition:
-    transform 0.36s
-    cubic-bezier(
-      0.22,
-      1,
-      0.36,
-      1
-    );
+    transform
+    .35s
+    cubic-bezier(.22,1,.36,1);
 
 }
 
@@ -1861,17 +2060,13 @@ button {
 }
 
 
-/* Botón cerrar */
-
 .modal-close {
 
   position: absolute;
 
-  top: 17px;
-
   right: 18px;
 
-  z-index: 4;
+  top: 17px;
 
   width: 35px;
 
@@ -1885,50 +2080,41 @@ button {
 
   border:
     1px solid
-    rgba(110, 120, 130, 0.15);
+    rgba(100,115,125,.14);
 
   border-radius: 50%;
 
+  color: #64747b;
+
   background:
-    rgba(245, 246, 247, 0.82);
+    #f5f7f8;
 
-  color: #68757c;
-
-  font-size: 22px;
-
-  line-height: 1;
+  font-size: 21px;
 
   transition:
-    transform 0.22s ease,
-    background 0.22s ease;
+    transform .2s ease;
 
 }
 
 
 .modal-close:hover {
 
-  transform:
-    rotate(90deg);
-
-  background:
-    white;
+  transform: rotate(90deg);
 
 }
 
-
-/* Cabecera modal */
 
 .modal-header {
 
   display: grid;
 
   grid-template-columns:
-    105px
+    102px
     1fr;
 
   align-items: center;
 
-  gap: 20px;
+  gap: 19px;
 
   padding-right: 35px;
 
@@ -1937,23 +2123,19 @@ button {
 
 .modal-photo {
 
-  width: 102px;
+  width: 100px;
 
-  height: 102px;
+  height: 100px;
 
   overflow: hidden;
 
   border:
     4px solid
-    rgba(72, 169, 203, 0.22);
+    rgba(67,169,201,.25);
 
   border-radius: 50%;
 
-  background: #eef1f2;
-
-  box-shadow:
-    0 11px 25px
-    rgba(70, 80, 100, 0.1);
+  background: #edf1f2;
 
 }
 
@@ -1964,8 +2146,6 @@ button {
 
   height: 100%;
 
-  display: block;
-
   object-fit: cover;
 
 }
@@ -1975,13 +2155,13 @@ button {
 
   display: inline-block;
 
-  color: #688793;
+  color: #568798;
 
-  font-size: 9.5px;
+  font-size: 9px;
 
-  font-weight: 700;
+  font-weight: 800;
 
-  letter-spacing: 0.13em;
+  letter-spacing: .13em;
 
   text-transform: uppercase;
 
@@ -2000,7 +2180,7 @@ button {
     serif;
 
   font-size:
-    clamp(28px, 4vw, 40px);
+    clamp(28px, 4vw, 39px);
 
   line-height: 1;
 
@@ -2015,46 +2195,44 @@ button {
 
   color: var(--muted);
 
-  font-size: 13px;
+  font-size: 12.5px;
 
 }
 
 
-/* Contenido */
-
 .modal-body {
 
-  margin-top: 24px;
+  margin-top: 23px;
 
 }
 
 
 .modal-section {
 
-  position: relative;
+  margin-top: 10px;
 
   padding:
-    15px
-    18px;
-
-  margin-top: 10px;
+    14px
+    17px;
 
   border:
     1px solid
-    rgba(220, 225, 228, 0.72);
+    rgba(215,223,226,.78);
 
-  border-radius: 17px;
+  border-left:
+    3px solid
+    rgba(67,169,201,.48);
+
+  border-radius: 15px;
 
   background:
-    rgba(248, 250, 251, 0.68);
+    #f9fbfb;
 
 }
 
 
 .modal-section:first-child {
-
   margin-top: 0;
-
 }
 
 
@@ -2062,15 +2240,15 @@ button {
 
   display: block;
 
-  margin-bottom: 7px;
+  margin-bottom: 6px;
 
-  color: #668490;
+  color: #568393;
 
-  font-size: 9px;
+  font-size: 8.7px;
 
-  font-weight: 800;
+  font-weight: 900;
 
-  letter-spacing: 0.12em;
+  letter-spacing: .12em;
 
   text-transform: uppercase;
 
@@ -2081,48 +2259,41 @@ button {
 
   margin: 0;
 
-  color: #4e5d64;
+  color: #4f6067;
 
-  font-size: 13.5px;
+  font-size: 13px;
 
-  line-height: 1.65;
+  line-height: 1.62;
 
 }
 
 
-/* Nota inferior */
-
 .modal-note {
 
-  margin-top: 18px;
+  margin-top: 17px;
 
   padding:
-    13px
-    15px;
+    12px
+    14px;
 
   border-left:
-    3px solid
-    var(--blue);
+    4px solid
+    var(--convergence);
 
   border-radius:
-    4px 15px 15px 4px;
+    4px 14px 14px 4px;
 
   background:
+    #eff9fa;
 
-    linear-gradient(
-      90deg,
-      rgba(231, 247, 251, 0.8),
-      rgba(250, 248, 244, 0.75)
-    );
-
-  color: #69777d;
+  color: #64767c;
 
   font-family:
     Georgia,
     "Times New Roman",
     serif;
 
-  font-size: 11.3px;
+  font-size: 11px;
 
   font-style: italic;
 
@@ -2131,61 +2302,26 @@ button {
 }
 
 
-/* Scrollbar del modal */
-
-.modal-dialog::-webkit-scrollbar {
-
-  width: 8px;
-
-}
-
-
-.modal-dialog::-webkit-scrollbar-track {
-
-  background: transparent;
-
-}
-
-
-.modal-dialog::-webkit-scrollbar-thumb {
-
-  border-radius: 999px;
-
-  background:
-    rgba(100, 120, 130, 0.18);
-
-}
-
-
 /* =========================================================
-   17. FOCUS / ACCESIBILIDAD
+   ACCESIBILIDAD
    ========================================================= */
 
 button:focus-visible {
 
   outline:
     3px solid
-    rgba(72, 169, 203, 0.35);
+    rgba(67,169,201,.38);
 
-  outline-offset: 4px;
+  outline-offset: 3px;
 
 }
 
 
 /* =========================================================
-   18. TABLET
+   TABLET
    ========================================================= */
 
-@media (max-width: 1080px) {
-
-  .page {
-
-    padding:
-      28px
-      22px;
-
-  }
-
+@media (max-width: 1100px) {
 
   .hero {
 
@@ -2193,55 +2329,103 @@ button:focus-visible {
 
     flex-direction: column;
 
-    gap: 18px;
-
   }
 
 
   .hologram {
 
+    min-height: auto;
+
+    padding:
+      50px
+      25px;
+
+    display: grid;
+
     grid-template-columns:
       1fr
       1fr;
 
-    grid-template-areas:
-
-      "core core"
-
-      "axis1 axis2"
-
-      "axis3 axis4"
-
-      "integration integration";
-
-    min-height: auto;
-
-    row-gap: 26px;
-
-    padding:
-      55px
-      28px;
+    gap: 22px;
 
   }
 
 
-  .core {
-
-    margin-bottom: 30px;
-
-  }
-
-
-  .axis-group::after {
+  .knowledge-links,
+  .depth-layer {
 
     display: none;
 
   }
 
 
-  .integration {
+  .core,
+  .axis-group,
+  .convergence-node,
+  .tension-node,
+  .final-node,
+  .network-legend {
 
-    margin-top: 15px;
+    position: static;
+
+    transform: none;
+
+  }
+
+
+  .core {
+
+    grid-column:
+      1 / -1;
+
+    justify-self: center;
+
+    margin-bottom: 35px;
+
+  }
+
+
+  .axis-group {
+
+    width: 100%;
+
+  }
+
+
+  .axis-3,
+  .axis-4 {
+
+    flex-direction: column;
+
+  }
+
+
+  .convergence-node {
+
+    width: 100%;
+
+    transform: none;
+
+  }
+
+
+  .tension-node,
+  .final-node {
+
+    width: 100%;
+
+    grid-column:
+      1 / -1;
+
+  }
+
+
+  .network-legend {
+
+    grid-column:
+      1 / -1;
+
+    justify-self: center;
 
   }
 
@@ -2249,7 +2433,7 @@ button:focus-visible {
 
 
 /* =========================================================
-   19. CELULAR
+   CELULAR
    ========================================================= */
 
 @media (max-width: 700px) {
@@ -2257,30 +2441,14 @@ button:focus-visible {
   .page {
 
     padding:
-      22px
-      13px;
-
-  }
-
-
-  .hero {
-
-    margin-bottom: 20px;
+      20px
+      12px;
 
   }
 
 
   .hero h1 {
-
     font-size: 42px;
-
-  }
-
-
-  .hero-description {
-
-    font-size: 13px;
-
   }
 
 
@@ -2298,26 +2466,12 @@ button:focus-visible {
     grid-template-columns:
       1fr;
 
-    grid-template-areas:
-
-      "core"
-
-      "axis1"
-
-      "axis2"
-
-      "axis3"
-
-      "axis4"
-
-      "integration";
-
     padding:
-      55px
-      15px
-      35px;
+      45px
+      14px
+      30px;
 
-    border-radius: 27px;
+    border-radius: 25px;
 
   }
 
@@ -2325,87 +2479,62 @@ button:focus-visible {
   .core {
 
     width:
-      min(275px, 78vw);
+      min(270px, 78vw);
 
-    padding: 35px;
+    height:
+      min(270px, 78vw);
 
-    margin-bottom: 38px;
-
-  }
-
-
-  .orbit-three {
-
-    inset: -38px;
+    padding: 34px;
 
   }
 
 
-  .orbit-two {
+  .axis-group,
+  .tension-node,
+  .final-node,
+  .convergence-node {
 
-    inset: -25px;
-
-  }
-
-
-  .orbit-one {
-
-    inset: -12px;
+    grid-column: 1;
 
   }
 
 
-  .axis-card {
+  .network-legend {
 
-    min-height: 78px;
+    grid-column: 1;
 
-  }
+    width: 100%;
 
+    justify-content: center;
 
-  .axis-content strong {
+    flex-wrap: wrap;
 
-    font-size: 12.5px;
-
-  }
-
-
-  .axis-content small {
-
-    font-size: 10px;
+    border-radius: 16px;
 
   }
 
 
   .concept-route {
 
-    gap: 4px;
+    gap: 3px;
 
   }
 
 
   .concept-route span {
 
-    width: 24px;
+    width: 23px;
 
-    height: 24px;
-
-  }
-
-
-  .concept-route i {
-
-    font-size: 9px;
+    height: 23px;
 
   }
 
-
-  /* Modal móvil */
 
   .modal {
 
-    padding: 12px;
-
     align-items: flex-end;
+
+    padding: 10px;
 
   }
 
@@ -2417,15 +2546,14 @@ button:focus-visible {
     max-height: 92vh;
 
     padding:
-      25px
-      19px
-      25px;
+      23px
+      17px;
 
     border-radius:
-      27px
-      27px
-      18px
-      18px;
+      25px
+      25px
+      15px
+      15px;
 
   }
 
@@ -2433,51 +2561,26 @@ button:focus-visible {
   .modal-header {
 
     grid-template-columns:
-      78px
+      74px
       1fr;
 
-    gap: 14px;
-
-    padding-right: 20px;
+    gap: 13px;
 
   }
 
 
   .modal-photo {
 
-    width: 76px;
+    width: 72px;
 
-    height: 76px;
+    height: 72px;
 
   }
 
 
   .modal-heading h2 {
 
-    font-size: 28px;
-
-  }
-
-
-  .modal-subtitle {
-
-    font-size: 11.5px;
-
-  }
-
-
-  .modal-section {
-
-    padding:
-      13px
-      14px;
-
-  }
-
-
-  .modal-section p {
-
-    font-size: 12.8px;
+    font-size: 27px;
 
   }
 
@@ -2485,7 +2588,7 @@ button:focus-visible {
 
 
 /* =========================================================
-   20. REDUCIR ANIMACIONES SI EL DISPOSITIVO LO SOLICITA
+   REDUCCIÓN DE MOVIMIENTO
    ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
@@ -2494,16 +2597,14 @@ button:focus-visible {
   *::before,
   *::after {
 
-    scroll-behavior: auto !important;
-
     animation-duration:
-      0.01ms !important;
+      .01ms !important;
 
     animation-iteration-count:
       1 !important;
 
     transition-duration:
-      0.01ms !important;
+      .01ms !important;
 
   }
 
